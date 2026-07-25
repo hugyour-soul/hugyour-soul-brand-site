@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { collections, guideTopics, navigation, site } from "./siteContent";
 
 type PageKey = "/" | "/about" | "/collections" | "/guides" | "/contact";
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 const pageTitles: Record<PageKey, string> = {
   "/": "品牌首頁",
@@ -13,13 +14,10 @@ const pageTitles: Record<PageKey, string> = {
 };
 
 function normalizePath(pathname: string): PageKey {
-  if (
-    pathname === "/about" ||
-    pathname === "/collections" ||
-    pathname === "/guides" ||
-    pathname === "/contact"
-  ) {
-    return pathname;
+  const path = basePath && pathname.startsWith(basePath) ? pathname.slice(basePath.length) || "/" : pathname;
+
+  if (path === "/about" || path === "/collections" || path === "/guides" || path === "/contact") {
+    return path;
   }
 
   return "/";
@@ -38,7 +36,7 @@ export function App() {
 
   function visit(path: string) {
     const next = normalizePath(path);
-    window.history.pushState({}, "", next);
+    window.history.pushState({}, "", `${basePath}${next}`);
     setPage(next);
     setMenuOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
