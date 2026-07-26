@@ -1,6 +1,6 @@
-import { ArrowRight, ExternalLink, Menu, X } from "lucide-react";
+import { ArrowRight, ExternalLink, Menu, Sparkles, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { collections, guideTopics, navigation, site } from "./siteContent";
+import { collections, curationNotes, guideTopics, navigation, processSteps, site, socialLinks } from "./siteContent";
 
 type PageKey = "/" | "/about" | "/collections" | "/guides" | "/contact";
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -116,30 +116,47 @@ function HomePage({ visit }: { visit: (path: string) => void }) {
       <section className="hero-section">
         <div className="hero-copy">
           <h1>{site.brandName}</h1>
-          <p>{site.tagline}</p>
+          <p>從日常配戴到空間擺件，整理有照片細節、天然紋理說明與私訊購買路徑的水晶礦石選物。</p>
           <div className="hero-actions">
             <button className="primary-action" type="button" onClick={() => visit("/collections")}>
               查看分類
               <ArrowRight size={18} aria-hidden="true" />
             </button>
-            <button className="secondary-action" type="button" onClick={() => visit("/guides")}>
-              水晶知識
-            </button>
+            <a className="secondary-action" href={site.instagramUrl}>
+              Instagram
+              <ExternalLink size={16} aria-hidden="true" />
+            </a>
           </div>
         </div>
-        <div className="hero-panel" aria-label="品牌定位摘要">
-          <span>Brand Frame</span>
-          <strong>先建立信任，再導向購買。</strong>
-          <p>這裡預留給之後的主視覺、品牌一句話與精選入口。</p>
+        <div className="hero-panel" aria-label="精選礦石視覺">
+          <img src={collections[1].image} alt="紫色礦物與晶簇近拍" />
+          <div className="hero-panel-copy">
+            <span>New drops via social</span>
+            <strong>先看細節，再決定是否帶回日常。</strong>
+            <p>商品以社群現貨更新為主，網站負責整理分類、購買前確認與品牌信任感。</p>
+          </div>
         </div>
       </section>
 
       <section className="content-band">
-        <SectionHeading title="網站定位" text="此站作為品牌前台，不承擔商品庫存、付款或物流。" />
+        <SectionHeading title="選品方式" text="參考個人礦石賣家常見的社群導購節奏：照片先建立信任，網站把規則說清楚。" />
         <div className="feature-grid">
-          <Feature title="品牌故事" text="讓第一次看到的人知道這間店是誰、為什麼值得信任。" />
-          <Feature title="分類入口" text="只放穩定分類與精選入口，避免每日同步庫存。" />
-          <Feature title="知識內容" text="放保養、挑選、天然礦缺等說明，降低購買前疑慮。" />
+          {curationNotes.map((note) => (
+            <Feature title={note} text="每件商品都以可確認的材質狀態、尺寸比例與購買流程來降低私訊來回成本。" key={note} />
+          ))}
+        </div>
+      </section>
+
+      <section className="content-band">
+        <SectionHeading title="購買流程" text="讓第一次從 IG 或 Threads 來的人，能快速知道下一步要做什麼。" />
+        <div className="process-grid">
+          {processSteps.map((step) => (
+            <article className="process-step" key={step.title}>
+              <step.icon size={22} aria-hidden="true" />
+              <h2>{step.title}</h2>
+              <p>{step.text}</p>
+            </article>
+          ))}
         </div>
       </section>
     </>
@@ -149,10 +166,13 @@ function HomePage({ visit }: { visit: (path: string) => void }) {
 function AboutPage() {
   return (
     <section className="plain-section">
-      <SectionHeading title="關於品牌" text="這裡先放架構，之後再補真實故事與店主語氣。" />
-      <div className="text-frame">
-        <p>品牌起點、選品標準、與水晶礦石相處的方式會放在這裡。</p>
-        <p>這一頁的目標不是寫得華麗，而是讓使用者相信商品背後有人在認真挑選。</p>
+      <SectionHeading title="關於品牌" text="Hug Your Soul 是以水晶、礦石與日常陪伴為主的選物空間。" />
+      <div className="about-layout">
+        <img src={collections[0].image} alt="水晶飾品與礦石選物" />
+        <div className="text-frame">
+          <p>網站會放穩定資訊：選品方式、分類入口、購買前確認與保養知識。現貨更新則以 Instagram 與 Threads 為主。</p>
+          <p>我們不把天然紋理包裝成完美無瑕，也不讓買家只靠一句寓意下單。每次購買前，都應該先看照片、尺寸、礦缺與使用情境。</p>
+        </div>
       </div>
     </section>
   );
@@ -166,10 +186,16 @@ function CollectionsPage() {
         {collections.map((collection) => (
           <article className="collection-item" key={collection.name}>
             <div>
+              <img src={collection.image} alt={`${collection.name}分類示意`} />
               <h2>{collection.name}</h2>
               <p>{collection.description}</p>
+              <div className="tag-row">
+                {collection.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
             </div>
-            <a className="text-action" href={site.commerceUrl}>
+            <a className="text-action" href={site.instagramUrl}>
               {site.commerceLabel}
               <ExternalLink size={16} aria-hidden="true" />
             </a>
@@ -186,10 +212,10 @@ function GuidesPage() {
       <SectionHeading title="水晶知識" text="未來可逐篇擴充成 SEO 內容與購買前 FAQ。" />
       <div className="topic-grid">
         {guideTopics.map((topic) => (
-          <article className="topic-card" key={topic}>
+          <article className="topic-card" key={topic.title}>
             <span>Guide</span>
-            <h2>{topic}</h2>
-            <p>預留文章摘要。之後可加上保養方式、照片範例與購買注意事項。</p>
+            <h2>{topic.title}</h2>
+            <p>{topic.text}</p>
           </article>
         ))}
       </div>
@@ -200,10 +226,20 @@ function GuidesPage() {
 function ContactPage() {
   return (
     <section className="plain-section">
-      <SectionHeading title="聯絡與購買說明" text="把購買流程說清楚，減少私訊來回確認。" />
-      <div className="text-frame">
-        <p>可放 Instagram、LINE、Pinkoi、WACA/EasyStore/SHOPLINE 商店連結。</p>
-        <p>也可列出出貨天數、付款方式、退換貨原則、天然礦石瑕疵說明。</p>
+      <SectionHeading title="聯絡與購買說明" text="現貨、補貨與細節照以社群更新為主；網站保留購買前確認事項。" />
+      <div className="social-grid">
+        {socialLinks.map((link) => (
+          <a className="social-card" href={link.url} key={link.label}>
+            <link.icon size={22} aria-hidden="true" />
+            <span>{link.label}</span>
+            <p>{link.text}</p>
+            <ExternalLink size={16} aria-hidden="true" />
+          </a>
+        ))}
+      </div>
+      <div className="text-frame purchase-notes">
+        <p><Sparkles size={18} aria-hidden="true" /> 下單前建議確認自然光照片、尺寸、瑕疵近照、付款方式與出貨時間。</p>
+        <p>天然礦石可能有棉絮、冰裂、共生礦、色帶與小礦缺；這些不是瑕疵話術，應該在購買前看清楚。</p>
       </div>
     </section>
   );
