@@ -304,7 +304,9 @@ main {
 .feature-grid,
 .topic-grid,
 .process-grid,
-.social-grid {
+.social-grid,
+.commerce-grid,
+.handoff-strip {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
@@ -316,7 +318,9 @@ main {
 .collection-item,
 .text-frame,
 .process-step,
-.social-card {
+.social-card,
+.commerce-card,
+.handoff-strip article {
   border: 1px solid #ddd4c5;
   border-radius: 8px;
   background: #fffaf1;
@@ -324,14 +328,18 @@ main {
 
 .feature-card,
 .topic-card,
-.process-step {
+.process-step,
+.commerce-card,
+.handoff-strip article {
   padding: 22px;
 }
 
 .feature-card h2,
 .topic-card h2,
 .collection-item h2,
-.process-step h2 {
+.process-step h2,
+.commerce-card h2,
+.handoff-strip h2 {
   margin: 0;
   font-size: 1.1rem;
   letter-spacing: 0;
@@ -342,7 +350,9 @@ main {
 .collection-item p,
 .text-frame p,
 .process-step p,
-.social-card p {
+.social-card p,
+.commerce-card p,
+.handoff-strip p {
   margin: 12px 0 0;
   color: #58534c;
   line-height: 1.75;
@@ -380,7 +390,7 @@ main {
 
 .collection-item {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, auto);
   align-items: end;
   gap: 18px;
   padding: 22px;
@@ -414,6 +424,81 @@ main {
   color: #214c43;
   border-color: #c8bca8;
   background: #f7f3ec;
+}
+
+.collection-actions {
+  display: grid;
+  gap: 10px;
+  align-self: end;
+}
+
+.pending-action {
+  color: #70665b;
+  border-style: dashed;
+  background: #f3ead9;
+}
+
+.commerce-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.commerce-card {
+  display: flex;
+  min-height: 320px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.commerce-card-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.commerce-card-heading > svg,
+.handoff-strip svg {
+  color: #214c43;
+}
+
+.commerce-card-heading span {
+  display: block;
+  margin-top: 4px;
+  color: #815a18;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.commerce-card ul {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 24px;
+  padding-left: 20px;
+  color: #47453f;
+  line-height: 1.55;
+}
+
+.commerce-card .primary-action,
+.channel-status {
+  margin-top: auto;
+}
+
+.channel-status {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  border: 1px dashed #c8bca8;
+  border-radius: 6px;
+  padding: 10px 16px;
+  color: #70665b;
+  background: #f3ead9;
+}
+
+.handoff-strip {
+  margin-top: 22px;
+}
+
+.handoff-strip article {
+  min-height: 180px;
 }
 
 .social-grid {
@@ -501,6 +586,8 @@ main {
   .topic-grid,
   .process-grid,
   .social-grid,
+  .commerce-grid,
+  .handoff-strip,
   .about-layout,
   .collection-item {
     grid-template-columns: 1fr;

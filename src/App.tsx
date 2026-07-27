@@ -1,6 +1,16 @@
 import { ArrowRight, ExternalLink, Menu, Sparkles, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { collections, curationNotes, guideTopics, navigation, processSteps, site, socialLinks } from "./siteContent";
+import {
+  collections,
+  commerceChannels,
+  curationNotes,
+  guideTopics,
+  handoffPrinciples,
+  navigation,
+  processSteps,
+  site,
+  socialLinks,
+} from "./siteContent";
 
 type PageKey = "/" | "/about" | "/collections" | "/guides" | "/contact";
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -119,21 +129,21 @@ function HomePage({ visit }: { visit: (path: string) => void }) {
           <p>從日常配戴到空間擺件，整理有照片細節、天然紋理說明與私訊購買路徑的水晶礦石選物。</p>
           <div className="hero-actions">
             <button className="primary-action" type="button" onClick={() => visit("/collections")}>
-              查看分類
+              查看分類入口
               <ArrowRight size={18} aria-hidden="true" />
             </button>
-            <a className="secondary-action" href={site.instagramUrl}>
-              Instagram
-              <ExternalLink size={16} aria-hidden="true" />
-            </a>
+            <button className="secondary-action" type="button" onClick={() => visit("/contact")}>
+              購買通路
+              <ArrowRight size={16} aria-hidden="true" />
+            </button>
           </div>
         </div>
         <div className="hero-panel" aria-label="精選礦石視覺">
           <img src={collections[1].image} alt="紫色礦物與晶簇近拍" />
           <div className="hero-panel-copy">
-            <span>New drops via social</span>
-            <strong>先看細節，再決定是否帶回日常。</strong>
-            <p>商品以社群現貨更新為主，網站負責整理分類、購買前確認與品牌信任感。</p>
+            <span>Catalog routing</span>
+            <strong>官網建立信任，賣場承接交易。</strong>
+            <p>商品上架、分類、庫存與訂單交由外部平台維護，網站負責整理購買入口。</p>
           </div>
         </div>
       </section>
@@ -148,7 +158,7 @@ function HomePage({ visit }: { visit: (path: string) => void }) {
       </section>
 
       <section className="content-band">
-        <SectionHeading title="購買流程" text="讓第一次從 IG 或 Threads 來的人，能快速知道下一步要做什麼。" />
+        <SectionHeading title="購買流程" text="讓第一次進站的人知道官網只做導購，正式下單交給超商賣場平台。" />
         <div className="process-grid">
           {processSteps.map((step) => (
             <article className="process-step" key={step.title}>
@@ -158,6 +168,11 @@ function HomePage({ visit }: { visit: (path: string) => void }) {
             </article>
           ))}
         </div>
+      </section>
+
+      <section className="content-band">
+        <SectionHeading title="平台分工" text="商品生命週期交給後台，網站只保留穩定的品牌分類與購買入口。" />
+        <CommerceChannels />
       </section>
     </>
   );
@@ -181,7 +196,7 @@ function AboutPage() {
 function CollectionsPage() {
   return (
     <section className="plain-section">
-      <SectionHeading title="商品分類" text="分類頁只做入口，完整價格、庫存與結帳留在商店平台。" />
+      <SectionHeading title="商品分類" text="分類頁只做導覽。完整商品、價格、庫存、規格與結帳都以外部賣場為準。" />
       <div className="collection-list">
         {collections.map((collection) => (
           <article className="collection-item" key={collection.name}>
@@ -195,10 +210,29 @@ function CollectionsPage() {
                 ))}
               </div>
             </div>
-            <a className="text-action" href={site.instagramUrl}>
-              {site.commerceLabel}
-              <ExternalLink size={16} aria-hidden="true" />
-            </a>
+            <div className="collection-actions">
+              {commerceChannels.map((channel) =>
+                channel.url ? (
+                  <a className="text-action" href={channel.url} key={channel.label}>
+                    {channel.label}
+                    <ExternalLink size={16} aria-hidden="true" />
+                  </a>
+                ) : (
+                  <span className="text-action pending-action" key={channel.label}>
+                    {channel.label}準備中
+                  </span>
+                ),
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+      <div className="handoff-strip">
+        {handoffPrinciples.map((item) => (
+          <article key={item.title}>
+            <item.icon size={20} aria-hidden="true" />
+            <h2>{item.title}</h2>
+            <p>{item.text}</p>
           </article>
         ))}
       </div>
@@ -226,7 +260,8 @@ function GuidesPage() {
 function ContactPage() {
   return (
     <section className="plain-section">
-      <SectionHeading title="聯絡與購買說明" text="現貨、補貨與細節照以社群更新為主；網站保留購買前確認事項。" />
+      <SectionHeading title="聯絡與購買說明" text="正式下單、付款、物流與訂單通知交由外部賣場平台處理。" />
+      <CommerceChannels />
       <div className="social-grid">
         {socialLinks.map((link) => (
           <a className="social-card" href={link.url} key={link.label}>
@@ -239,9 +274,41 @@ function ContactPage() {
       </div>
       <div className="text-frame purchase-notes">
         <p><Sparkles size={18} aria-hidden="true" /> 下單前建議確認自然光照片、尺寸、瑕疵近照、付款方式與出貨時間。</p>
-        <p>天然礦石可能有棉絮、冰裂、共生礦、色帶與小礦缺；這些不是瑕疵話術，應該在購買前看清楚。</p>
+        <p>天然礦石可能有棉絮、冰裂、共生礦、色帶與小礦缺；官網提供購買前提醒，實際商品狀態以平台商品頁與賣家回覆為準。</p>
       </div>
     </section>
+  );
+}
+
+function CommerceChannels() {
+  return (
+    <div className="commerce-grid">
+      {commerceChannels.map((channel) => (
+        <article className="commerce-card" key={channel.label}>
+          <div className="commerce-card-heading">
+            <channel.icon size={24} aria-hidden="true" />
+            <div>
+              <h2>{channel.label}</h2>
+              <span>{channel.role}</span>
+            </div>
+          </div>
+          <p>{channel.text}</p>
+          <ul>
+            {channel.bullets.map((bullet) => (
+              <li key={bullet}>{bullet}</li>
+            ))}
+          </ul>
+          {channel.url ? (
+            <a className="primary-action" href={channel.url}>
+              前往{channel.label}
+              <ExternalLink size={16} aria-hidden="true" />
+            </a>
+          ) : (
+            <span className="channel-status">{channel.status}</span>
+          )}
+        </article>
+      ))}
+    </div>
   );
 }
 
