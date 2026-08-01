@@ -126,14 +126,14 @@ function HomePage({ visit }: { visit: (path: string) => void }) {
       <section className="hero-section">
         <div className="hero-copy">
           <h1>{site.brandName}</h1>
-          <p>從日常配戴到空間擺件，整理有照片細節、天然紋理說明與私訊購買路徑的水晶礦石選物。</p>
+          <p>每個水晶都是獨一無二的，你也是。從日常配戴到空間擺件，陪你用眼緣與直覺找到適合自己的礦礦。</p>
           <div className="hero-actions">
             <button className="primary-action" type="button" onClick={() => visit("/collections")}>
-              查看分類入口
+              找自己的玫瑰
               <ArrowRight size={18} aria-hidden="true" />
             </button>
             <button className="secondary-action" type="button" onClick={() => visit("/contact")}>
-              購買通路
+              購買與邀請須知
               <ArrowRight size={16} aria-hidden="true" />
             </button>
           </div>
@@ -142,24 +142,24 @@ function HomePage({ visit }: { visit: (path: string) => void }) {
           <img src={collections[1].image} alt="紫色礦物與晶簇近拍" />
           <ImageCredit credit={collections[1].imageCredit} variant="overlay" />
           <div className="hero-panel-copy">
-            <span>Catalog routing</span>
-            <strong>官網建立信任，賣場承接交易。</strong>
-            <p>商品上架、分類、庫存與訂單交由外部平台維護，網站負責整理購買入口。</p>
+            <span>Good style, gentle choice</span>
+            <strong>擁抱生活，美好格調。</strong>
+            <p>眼緣第一、功效其次。商品狀態與結帳交由賣場承接，網站先把挑選方向說清楚。</p>
           </div>
         </div>
       </section>
 
       <section className="content-band">
-        <SectionHeading title="選品方式" text="參考個人礦石賣家常見的社群導購節奏：照片先建立信任，網站把規則說清楚。" />
+        <SectionHeading title="選品方式" text="好格的語氣不是催你下單，而是陪你看見哪一顆真的有眼緣。" />
         <div className="feature-grid">
           {curationNotes.map((note) => (
-            <Feature title={note} text="每件商品都以可確認的材質狀態、尺寸比例與購買流程來降低私訊來回成本。" key={note} />
+            <Feature title={note} text="先喜歡，再確認。天然礦石的色帶、棉絮、冰裂、尺寸與出貨方式，都應該在購買前看清楚。" key={note} />
           ))}
         </div>
       </section>
 
       <section className="content-band">
-        <SectionHeading title="購買流程" text="讓第一次進站的人知道官網只做導購，正式下單交給超商賣場平台。" />
+        <SectionHeading title="購買流程" text="從網站看方向，到社群看近況，最後在外部賣場確認現貨與結帳。" />
         <div className="process-grid">
           {processSteps.map((step) => (
             <article className="process-step" key={step.title}>
@@ -182,15 +182,15 @@ function HomePage({ visit }: { visit: (path: string) => void }) {
 function AboutPage() {
   return (
     <section className="plain-section">
-      <SectionHeading title="關於品牌" text="Hug Your Soul 是以水晶、礦石與日常陪伴為主的選物空間。" />
+      <SectionHeading title="關於好格" text="好格相信，每個水晶都是獨一無二的，你也是。" />
       <div className="about-layout">
         <figure className="licensed-image">
           <img src={collections[0].image} alt="水晶飾品與礦石選物" />
           <ImageCredit credit={collections[0].imageCredit} />
         </figure>
         <div className="text-frame">
-          <p>網站會放穩定資訊：選品方式、分類入口、購買前確認與保養知識。現貨更新則以 Instagram 與 Threads 為主。</p>
-          <p>我們不把天然紋理包裝成完美無瑕，也不讓買家只靠一句寓意下單。每次購買前，都應該先看照片、尺寸、礦缺與使用情境。</p>
+          <p>Hug Your Soul｜好格是水晶、礦礦與飾品的選物空間。比起把功效說滿，更希望你先相信自己的眼緣與直覺。</p>
+          <p>天然礦石不是完美複製品，色帶、棉絮、冰裂、共生礦與小礦缺都可能存在。購買前請先看照片、尺寸、出貨須知與實際商品狀態。</p>
         </div>
       </div>
     </section>
@@ -200,7 +200,7 @@ function AboutPage() {
 function CollectionsPage() {
   return (
     <section className="plain-section">
-      <SectionHeading title="商品分類" text="分類頁只做導覽。完整商品、價格、庫存、規格與結帳都以外部賣場為準。" />
+      <SectionHeading title="商品分類" text="先從眼緣開始，再進賣場確認價格、庫存、規格與出貨方式。" />
       <div className="collection-list">
         {collections.map((collection) => (
           <article className="collection-item" key={collection.name}>
@@ -267,7 +267,7 @@ function GuidesPage() {
 function ContactPage() {
   return (
     <section className="plain-section">
-      <SectionHeading title="聯絡與購買說明" text="正式下單、付款、物流與訂單通知交由外部賣場平台處理。" />
+      <SectionHeading title="聯絡與購買說明" text="邀請前請先看購買與出貨須知；正式下單、付款、物流與訂單通知交由外部賣場平台處理。" />
       <CommerceChannels />
       <div className="social-grid">
         {socialLinks.map((link) => (
@@ -280,8 +280,8 @@ function ContactPage() {
         ))}
       </div>
       <div className="text-frame purchase-notes">
-        <p><Sparkles size={18} aria-hidden="true" /> 下單前建議確認自然光照片、尺寸、瑕疵近照、付款方式與出貨時間。</p>
-        <p>天然礦石可能有棉絮、冰裂、共生礦、色帶與小礦缺；官網提供購買前提醒，實際商品狀態以平台商品頁與賣家回覆為準。</p>
+        <p><Sparkles size={18} aria-hidden="true" /> 眼緣第一、功效其次，請相信自己的直覺選擇。</p>
+        <p>天然礦石可能有棉絮、冰裂、共生礦、色帶與小礦缺；實際商品狀態、活動、運費與出貨時間，以平台商品頁與賣家回覆為準。</p>
       </div>
     </section>
   );
