@@ -36,21 +36,33 @@ export const collections = [
     name: "日常配戴",
     description: "手鍊、墜飾與能每天陪在身邊的小型礦石。官網負責整理風格，實際款式、手圍、價格與庫存以賣場後台為準。",
     image:
-      "https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=900&q=80",
+      "https://upload.wikimedia.org/wikipedia/commons/b/b5/Quartz-137772.jpg",
+    imageCredit: {
+      label: "Quartz specimen photo by Robert M. Lavinsky, CC BY-SA 3.0",
+      url: "https://commons.wikimedia.org/wiki/File:Quartz-137772.jpg",
+    },
     tags: ["手鍊", "墜飾", "隨身小礦"],
   },
   {
     name: "空間擺件",
     description: "晶簇、原礦與桌面陳列物。尺寸、重量、底部狀態與主要觀看面由商品賣場頁承接，避免官網與後台雙重維護。",
     image:
-      "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=900&q=80",
+      "https://upload.wikimedia.org/wikipedia/commons/4/4e/Amethyst-sample2.jpg",
+    imageCredit: {
+      label: "Amethyst photo by Jennifer M, CC BY 2.0",
+      url: "https://commons.wikimedia.org/wiki/File:Amethyst-sample2.jpg",
+    },
     tags: ["晶簇", "原礦", "桌面陳列"],
   },
   {
     name: "禮物選品",
     description: "依預算、場合與對方喜好整理入口；是否有現貨、是否可預購、包裝與出貨時間仍交由外部賣場確認。",
     image:
-      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=80",
+      "https://upload.wikimedia.org/wikipedia/commons/e/e7/Quartz-rhqtz-46d.jpg",
+    imageCredit: {
+      label: "Clear quartz cluster photo by Robert M. Lavinsky, CC BY-SA 3.0",
+      url: "https://commons.wikimedia.org/wiki/File:Quartz-rhqtz-46d.jpg",
+    },
     tags: ["生日", "入厝", "自我照顧"],
   },
 ];

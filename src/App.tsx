@@ -140,6 +140,7 @@ function HomePage({ visit }: { visit: (path: string) => void }) {
         </div>
         <div className="hero-panel" aria-label="精選礦石視覺">
           <img src={collections[1].image} alt="紫色礦物與晶簇近拍" />
+          <ImageCredit credit={collections[1].imageCredit} variant="overlay" />
           <div className="hero-panel-copy">
             <span>Catalog routing</span>
             <strong>官網建立信任，賣場承接交易。</strong>
@@ -183,7 +184,10 @@ function AboutPage() {
     <section className="plain-section">
       <SectionHeading title="關於品牌" text="Hug Your Soul 是以水晶、礦石與日常陪伴為主的選物空間。" />
       <div className="about-layout">
-        <img src={collections[0].image} alt="水晶飾品與礦石選物" />
+        <figure className="licensed-image">
+          <img src={collections[0].image} alt="水晶飾品與礦石選物" />
+          <ImageCredit credit={collections[0].imageCredit} />
+        </figure>
         <div className="text-frame">
           <p>網站會放穩定資訊：選品方式、分類入口、購買前確認與保養知識。現貨更新則以 Instagram 與 Threads 為主。</p>
           <p>我們不把天然紋理包裝成完美無瑕，也不讓買家只靠一句寓意下單。每次購買前，都應該先看照片、尺寸、礦缺與使用情境。</p>
@@ -201,7 +205,10 @@ function CollectionsPage() {
         {collections.map((collection) => (
           <article className="collection-item" key={collection.name}>
             <div>
-              <img src={collection.image} alt={`${collection.name}分類示意`} />
+              <figure className="licensed-image">
+                <img src={collection.image} alt={`${collection.name}分類示意`} />
+                <ImageCredit credit={collection.imageCredit} />
+              </figure>
               <h2>{collection.name}</h2>
               <p>{collection.description}</p>
               <div className="tag-row">
@@ -309,6 +316,19 @@ function CommerceChannels() {
         </article>
       ))}
     </div>
+  );
+}
+
+function ImageCredit({ credit, variant }: { credit: { label: string; url: string }; variant?: "overlay" }) {
+  return (
+    <a
+      className={variant === "overlay" ? "image-credit image-credit-overlay" : "image-credit"}
+      href={credit.url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {credit.label}
+    </a>
   );
 }
 
