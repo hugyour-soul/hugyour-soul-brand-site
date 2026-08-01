@@ -15,8 +15,8 @@ import {
 } from "lucide-react";
 
 export const site = {
-  brandName: "Hug Your Soul｜好格",
-  tagline: "擁抱生活，美好格調的水晶礦礦飾品",
+  brandName: "Hug Your Soul",
+  tagline: "水晶、礦石與日常陪伴的選物空間",
   commerceLabel: "查看現貨賣場",
   commerceUrl: "https://www.instagram.com/hug_your.soul/",
   instagramUrl: "https://www.instagram.com/hug_your.soul/",
@@ -34,7 +34,7 @@ export const navigation = [
 export const collections = [
   {
     name: "日常配戴",
-    description: "手鍊、墜飾與能每天陪在身邊的小礦礦。先看眼緣與直覺，再確認尺寸、手圍、材質與配戴習慣。",
+    description: "手鍊、墜飾與能每天陪在身邊的小型礦石。官網負責整理風格，實際款式、手圍、價格與庫存以賣場後台為準。",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/b/b5/Quartz-137772.jpg",
     imageCredit: {
@@ -45,7 +45,7 @@ export const collections = [
   },
   {
     name: "空間擺件",
-    description: "晶簇、原礦與桌面陳列。每顆天然紋理都不一樣，適合放在日常會看見的角落，慢慢建立自己的生活節奏。",
+    description: "晶簇、原礦與桌面陳列物。尺寸、重量、底部狀態與主要觀看面由商品賣場頁承接，避免官網與後台雙重維護。",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/4/4e/Amethyst-sample2.jpg",
     imageCredit: {
@@ -56,7 +56,7 @@ export const collections = [
   },
   {
     name: "禮物選品",
-    description: "送給在意的人，也送給正在照顧自己的你。依預算、場合與對方喜好挑選，讓對方遇到屬於自己的那朵玫瑰。",
+    description: "依預算、場合與對方喜好整理入口；是否有現貨、是否可預購、包裝與出貨時間仍交由外部賣場確認。",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/e/e7/Quartz-rhqtz-46d.jpg",
     imageCredit: {
@@ -90,18 +90,18 @@ export const commerceChannels = [
 
 export const handoffPrinciples = [
   {
-    title: "現貨以賣場為準",
-    text: "商品上架、庫存、價格、規格、訂單與物流都以好賣+ / 賣貨便後台為準。",
+    title: "平台是營運真相",
+    text: "商品上架、分類、庫存、價格、規格、訂單與物流都以好賣+ / 賣貨便後台為準。",
     icon: ShieldCheck,
   },
   {
-    title: "官網負責陪你挑",
-    text: "官網整理品牌調性、分類入口、購買前提醒與外部賣場連結，不取代正式商品頁。",
+    title: "官網只做導購",
+    text: "官網保留品牌分類、選物故事、購買前提醒與外部賣場入口，不複製完整商品資料。",
     icon: Tags,
   },
   {
-    title: "少一點來回確認",
-    text: "先把眼緣、尺寸、天然紋理與出貨須知說清楚，私訊時就能更快找到適合的那顆。",
+    title: "非技術者可維護",
+    text: "未來主要處理者只需要管理外部平台；網站只在新增分類、調整品牌內容或替換賣場連結時更新。",
     icon: Truck,
   },
 ];
@@ -109,11 +109,11 @@ export const handoffPrinciples = [
 export const guideTopics = [
   {
     title: "如何挑選第一顆水晶",
-    text: "眼緣第一、功效其次。先相信自己的直覺，再回頭確認尺寸、重量、預算與保養難度。",
+    text: "先看喜歡的色感與使用情境，再看尺寸、重量、預算與保養難度。",
   },
   {
     title: "天然紋理、冰裂與礦缺",
-    text: "每個水晶都是獨一無二的，你也是。紋理、棉絮、共生礦與小礦缺都是購買前需要看清楚的細節。",
+    text: "天然礦石不是壓克力，紋理、棉絮、共生礦與小礦缺都需要購買前說清楚。",
   },
   {
     title: "日常配戴保養",
@@ -121,7 +121,7 @@ export const guideTopics = [
   },
   {
     title: "私訊購買前確認",
-    text: "邀請前先看出貨須知，購買前確認自然光照片、尺寸比例、瑕疵近照、付款方式與出貨時間。",
+    text: "購買前建議確認自然光照片、尺寸比例、瑕疵近照、付款方式與出貨時間。",
   },
 ];
 
@@ -130,36 +130,36 @@ export const socialLinks = [
     label: "Instagram",
     url: site.instagramUrl,
     icon: Instagram,
-    text: "看最新現貨、礦礦細節、開箱短片與邀請須知。",
+    text: "看最新現貨、短影片與礦石細節照。",
   },
   {
     label: "Threads",
     url: site.threadsUrl,
     icon: MessageCircle,
-    text: "看日常更新、補貨消息、闆娘碎念與選物想法。",
+    text: "看日常更新、補貨消息與選物想法。",
   },
 ];
 
 export const curationNotes = [
-  "眼緣第一，功效其次",
-  "每顆天然紋理都不一樣",
-  "邀請前先看出貨與購買須知",
+  "自然光與近拍細節比濾鏡重要",
+  "標示尺寸、重量、瑕疵與礦物特性",
+  "以私訊確認現貨狀態與出貨方式",
 ];
 
 export const processSteps = [
   {
     title: "看分類",
-    text: "先從官網感受風格、用途與購買前注意事項，找到第一眼有感覺的方向。",
+    text: "先從官網確認風格、用途與購買前注意事項。",
     icon: Camera,
   },
   {
     title: "進賣場",
-    text: "點進好賣+ 或賣貨便，由平台顯示現貨、規格、價格、庫存與活動。",
+    text: "點進好賣+ 或賣貨便，由平台顯示現貨、規格、價格與庫存。",
     icon: Store,
   },
   {
     title: "平台結帳",
-    text: "付款、物流、訂單通知與售後溝通都交給外部平台承接，流程清楚一點也比較安心。",
+    text: "付款、物流、訂單通知與售後溝通都交給外部平台承接。",
     icon: Mail,
   },
 ];
