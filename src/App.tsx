@@ -4,6 +4,9 @@ import {
   collections,
   commerceChannels,
   curationNotes,
+  galleryDisclaimer,
+  galleryIntro,
+  galleryItems,
   guideTopics,
   handoffPrinciples,
   navigation,
@@ -12,13 +15,14 @@ import {
   socialLinks,
 } from "./siteContent";
 
-type PageKey = "/" | "/about" | "/collections" | "/guides" | "/contact";
+type PageKey = "/" | "/about" | "/collections" | "/gallery" | "/guides" | "/contact";
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 const pageTitles: Record<PageKey, string> = {
   "/": "品牌首頁",
   "/about": "關於品牌",
   "/collections": "商品分類",
+  "/gallery": "選物紀錄",
   "/guides": "水晶知識",
   "/contact": "聯絡與購買說明",
 };
@@ -26,7 +30,13 @@ const pageTitles: Record<PageKey, string> = {
 function normalizePath(pathname: string): PageKey {
   const path = basePath && pathname.startsWith(basePath) ? pathname.slice(basePath.length) || "/" : pathname;
 
-  if (path === "/about" || path === "/collections" || path === "/guides" || path === "/contact") {
+  if (
+    path === "/about" ||
+    path === "/collections" ||
+    path === "/gallery" ||
+    path === "/guides" ||
+    path === "/contact"
+  ) {
     return path;
   }
 
@@ -108,6 +118,7 @@ export function App() {
         {page === "/" && <HomePage visit={visit} />}
         {page === "/about" && <AboutPage />}
         {page === "/collections" && <CollectionsPage />}
+        {page === "/gallery" && <GalleryPage />}
         {page === "/guides" && <GuidesPage />}
         {page === "/contact" && <ContactPage />}
       </main>
@@ -242,6 +253,42 @@ function CollectionsPage() {
             <p>{item.text}</p>
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function GalleryPage() {
+  return (
+    <section className="plain-section">
+      <SectionHeading title="選物紀錄" text={galleryIntro} />
+
+      <div className="gallery-grid">
+        {galleryItems.map((item, index) => (
+          <article
+            className={item.status === "adopted" ? "gallery-item adopted" : "gallery-item"}
+            key={`${item.name}-${index}`}
+          >
+            <figure className="gallery-photo">
+              <img src={item.image} alt={item.name} loading="lazy" />
+              {item.status === "adopted" && <span className="gallery-badge">已找到主人</span>}
+            </figure>
+            <h2>{item.name}</h2>
+            <p>{item.note}</p>
+            <ImageCredit credit={item.imageCredit} />
+          </article>
+        ))}
+      </div>
+
+      <div className="text-frame gallery-note">
+        <p>
+          <Sparkles size={18} aria-hidden="true" /> 這頁只記錄看過的樣子。是否還有現貨、尺寸、價格與出貨方式，都以賣場和私訊回覆為準。
+        </p>
+        <p className="gallery-disclaimer">{galleryDisclaimer}</p>
+        <a className="text-action" href={site.commerceUrl}>
+          {site.commerceLabel}
+          <ExternalLink size={16} aria-hidden="true" />
+        </a>
       </div>
     </section>
   );

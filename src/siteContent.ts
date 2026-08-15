@@ -9,6 +9,7 @@ import {
   MessageCircle,
   ShieldCheck,
   ShoppingBag,
+  Sparkle,
   Store,
   Tags,
   Truck,
@@ -27,8 +28,81 @@ export const navigation = [
   { label: "首頁", path: "/", icon: Home },
   { label: "關於品牌", path: "/about", icon: HeartHandshake },
   { label: "商品分類", path: "/collections", icon: Gem },
+  { label: "選物紀錄", path: "/gallery", icon: Sparkle },
   { label: "水晶知識", path: "/guides", icon: BookOpen },
   { label: "聯絡購買", path: "/contact", icon: Mail },
+];
+
+// 選物紀錄：刻意「不是商品目錄」。
+// 沒有價格、沒有庫存、沒有購物車；賣掉的不下架，改標「已找到主人」。
+// 這樣網站不需要跟著賣場後台同步，維護成本才不會落到非技術者身上。
+export const galleryIntro =
+  "這裡放經手過的礦石長什麼樣子，不放價格和庫存。已經找到主人的也留著，那也是選物的一部分。";
+
+export const galleryDisclaimer =
+  "目前為版面示意，圖片取自 Wikimedia Commons 授權礦物標本照；正式上線會全數換成實拍。";
+
+export const galleryItems = [
+  {
+    name: "白水晶簇",
+    note: "光從側邊進來的時候會整片亮起來。",
+    status: "available" as const,
+    image: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Quartz-rhqtz-46d.jpg",
+    imageCredit: {
+      label: "Clear quartz cluster photo by Robert M. Lavinsky, CC BY-SA 3.0",
+      url: "https://commons.wikimedia.org/wiki/File:Quartz-rhqtz-46d.jpg",
+    },
+  },
+  {
+    name: "紫水晶原礦",
+    note: "顏色偏深，放桌上比想像中安靜。",
+    status: "available" as const,
+    image: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Amethyst-sample2.jpg",
+    imageCredit: {
+      label: "Amethyst photo by Jennifer M, CC BY 2.0",
+      url: "https://commons.wikimedia.org/wiki/File:Amethyst-sample2.jpg",
+    },
+  },
+  {
+    name: "透石英柱",
+    note: "有一條斜斜的冰裂，我反而最喜歡那裡。",
+    status: "adopted" as const,
+    image: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Quartz-137772.jpg",
+    imageCredit: {
+      label: "Quartz specimen photo by Robert M. Lavinsky, CC BY-SA 3.0",
+      url: "https://commons.wikimedia.org/wiki/File:Quartz-137772.jpg",
+    },
+  },
+  {
+    name: "紫晶洞小片",
+    note: "尺寸不大，適合放在看得到的地方。",
+    status: "adopted" as const,
+    image: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Amethyst-sample2.jpg",
+    imageCredit: {
+      label: "Amethyst photo by Jennifer M, CC BY 2.0",
+      url: "https://commons.wikimedia.org/wiki/File:Amethyst-sample2.jpg",
+    },
+  },
+  {
+    name: "白水晶單尖",
+    note: "邊角很乾淨，是那種第一眼就會拿起來的。",
+    status: "available" as const,
+    image: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Quartz-137772.jpg",
+    imageCredit: {
+      label: "Quartz specimen photo by Robert M. Lavinsky, CC BY-SA 3.0",
+      url: "https://commons.wikimedia.org/wiki/File:Quartz-137772.jpg",
+    },
+  },
+  {
+    name: "共生水晶群",
+    note: "底下還連著母岩，整塊有點重。",
+    status: "adopted" as const,
+    image: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Quartz-rhqtz-46d.jpg",
+    imageCredit: {
+      label: "Clear quartz cluster photo by Robert M. Lavinsky, CC BY-SA 3.0",
+      url: "https://commons.wikimedia.org/wiki/File:Quartz-rhqtz-46d.jpg",
+    },
+  },
 ];
 
 export const collections = [
