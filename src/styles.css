@@ -472,8 +472,10 @@ main {
   background: #f3ead9;
 }
 
+/* auto-fit：目前只有一個官方賣場時會撐滿整行（視覺上等於強調它是唯一入口），
+   之後加回其他通路也會自動變成 2-3 欄，不必再改 CSS。 */
 .commerce-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .commerce-card {

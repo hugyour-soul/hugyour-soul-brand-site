@@ -8,7 +8,6 @@ import {
   Mail,
   MessageCircle,
   ShieldCheck,
-  ShoppingBag,
   Sparkle,
   Store,
   Tags,
@@ -141,33 +140,18 @@ export const collections = [
   },
 ];
 
+// 目前實際營運的通路只有 WACA 官方賣場。
+// 好賣+ / 賣貨便曾列為候選但未啟用，先移除避免站上出現點不進去的死連結；
+// 之後要開再照同樣結構加回來即可。
 export const commerceChannels = [
   {
     label: "Hug Your Soul 官方賣場",
-    role: "主要商品後台",
+    role: "商品與訂單後台",
     url: site.commerceUrl,
     status: "已上線",
     icon: Store,
     text: "WACA 開店平台。商品上架、分類、價格、庫存、結帳與訂單都在這裡，官網只負責把人帶過來。",
     bullets: ["商品分類與現貨狀態", "線上結帳與物流", "訂單與售後溝通"],
-  },
-  {
-    label: "全家好賣+",
-    role: "備用通路（未啟用）",
-    url: "",
-    status: "賣場連結待設定",
-    icon: Store,
-    text: "適合承接主要現貨賣場、商品分類、庫存、規格、折扣、會員溝通與訂單處理。",
-    bullets: ["商品分類與上架", "庫存、價格、規格維護", "聊聊、黑名單與會員標籤"],
-  },
-  {
-    label: "7-11 賣貨便",
-    role: "備用 / 快速結帳通路",
-    url: "",
-    status: "賣場連結待設定",
-    icon: ShoppingBag,
-    text: "適合單品導購、社群談妥後快速開單，或給偏好 7-11 取貨付款的買家使用。",
-    bullets: ["一般賣場與快速結帳", "取貨付款", "商品連結分享"],
   },
 ];
 
