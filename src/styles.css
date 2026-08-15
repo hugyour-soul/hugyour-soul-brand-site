@@ -95,12 +95,10 @@ button {
   align-items: center;
   gap: 6px;
 }
-
 .nav-link,
 .icon-button,
 .primary-action,
-.secondary-action,
-.text-action {
+.secondary-action {
   min-height: 40px;
   border-radius: 6px;
   border: 1px solid transparent;
@@ -143,13 +141,6 @@ main {
   padding: 42px 0 64px;
 }
 
-.page-kicker {
-  margin: 0 0 16px;
-  color: #815a18;
-  font-size: 0.78rem;
-  font-weight: 700;
-}
-
 .hero-section {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
@@ -188,10 +179,8 @@ main {
   gap: 12px;
   margin-top: 34px;
 }
-
 .primary-action,
-.secondary-action,
-.text-action {
+.secondary-action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -266,18 +255,7 @@ main {
   background: rgba(22, 20, 20, 0.54);
   text-decoration-color: rgba(255, 250, 241, 0.5);
 }
-
-.hero-panel-copy {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: 12px;
-  padding: 28px 28px 48px;
-  color: #fffaf1;
-}
-
-.hero-panel span,
-.topic-card span {
+.hero-panel span {
   color: #9d6d17;
   font-size: 0.75rem;
   font-weight: 700;
@@ -325,159 +303,29 @@ main {
   font-size: 1rem;
   line-height: 1.8;
 }
-
-.feature-grid,
-.topic-grid,
-.process-grid,
 .social-grid,
-.commerce-grid,
-.handoff-strip {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: 28px;
-}
-
-.feature-card,
-.topic-card,
-.collection-item,
 .text-frame,
-.process-step,
 .social-card,
-.commerce-card,
-.handoff-strip article {
+.commerce-card {
   border: 1px solid #ddd4c5;
   border-radius: 8px;
   background: #fffaf1;
 }
-
-.feature-card,
-.topic-card,
-.process-step,
-.commerce-card,
-.handoff-strip article {
+.commerce-card {
   padding: 22px;
 }
-
-.feature-card h2,
-.topic-card h2,
-.collection-item h2,
-.process-step h2,
-.commerce-card h2,
-.handoff-strip h2 {
+.commerce-card h2 {
   margin: 0;
   font-size: 1.1rem;
   letter-spacing: 0;
 }
-
-.feature-card p,
-.topic-card p,
-.collection-item p,
 .text-frame p,
-.process-step p,
 .social-card p,
-.commerce-card p,
-.handoff-strip p {
+.commerce-card p {
   margin: 12px 0 0;
   color: #58534c;
   line-height: 1.75;
 }
-
-.process-step svg {
-  margin-bottom: 18px;
-  color: #214c43;
-}
-
-.about-layout {
-  display: grid;
-  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1fr);
-  align-items: stretch;
-  gap: 18px;
-  margin-top: 28px;
-}
-
-.about-layout img {
-  width: 100%;
-  min-height: 320px;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-.licensed-image {
-  display: grid;
-  gap: 8px;
-  margin: 0;
-}
-
-.about-layout .text-frame {
-  margin-top: 0;
-}
-
-.collection-list {
-  display: grid;
-  gap: 14px;
-  margin-top: 28px;
-}
-
-.collection-item {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(180px, auto);
-  align-items: end;
-  gap: 18px;
-  padding: 22px;
-}
-
-.collection-item img {
-  width: 100%;
-  height: 220px;
-  border-radius: 6px;
-  object-fit: cover;
-}
-
-.collection-item .licensed-image {
-  margin-bottom: 18px;
-}
-
-.tag-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
-}
-
-.tag-row span {
-  padding: 6px 9px;
-  border: 1px solid #d9c9ad;
-  border-radius: 999px;
-  color: #214c43;
-  background: #f3ead9;
-  font-size: 0.78rem;
-}
-
-.text-action {
-  color: #214c43;
-  border-color: #c8bca8;
-  background: #f7f3ec;
-}
-
-.collection-actions {
-  display: grid;
-  gap: 10px;
-  align-self: end;
-}
-
-.pending-action {
-  color: #70665b;
-  border-style: dashed;
-  background: #f3ead9;
-}
-
-/* auto-fit：目前只有一個官方賣場時會撐滿整行（視覺上等於強調它是唯一入口），
-   之後加回其他通路也會自動變成 2-3 欄，不必再改 CSS。 */
-.commerce-grid {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
 .commerce-card {
   display: flex;
   min-height: 320px;
@@ -490,9 +338,7 @@ main {
   align-items: center;
   gap: 14px;
 }
-
-.commerce-card-heading > svg,
-.handoff-strip svg {
+.commerce-card-heading > svg {
   color: #214c43;
 }
 
@@ -512,29 +358,8 @@ main {
   color: #47453f;
   line-height: 1.55;
 }
-
-.commerce-card .primary-action,
-.channel-status {
-  margin-top: auto;
-}
-
-.channel-status {
-  display: inline-flex;
-  min-height: 40px;
-  align-items: center;
-  border: 1px dashed #c8bca8;
-  border-radius: 6px;
-  padding: 10px 16px;
-  color: #70665b;
-  background: #f3ead9;
-}
-
-.handoff-strip {
+.commerce-card .primary-action {
   margin-top: 22px;
-}
-
-.handoff-strip article {
-  min-height: 180px;
 }
 
 .social-grid {
@@ -663,16 +488,6 @@ main {
   color: #57605a;
 }
 
-.gallery-note {
-  display: grid;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-.gallery-note .text-action {
-  justify-self: start;
-}
-
 .gallery-disclaimer {
   font-size: 0.86rem;
   color: #8a8479;
@@ -699,16 +514,8 @@ main {
   .mobile-nav .nav-link {
     justify-content: flex-start;
   }
-
   .hero-section,
-  .feature-grid,
-  .topic-grid,
-  .process-grid,
-  .social-grid,
-  .commerce-grid,
-  .handoff-strip,
-  .about-layout,
-  .collection-item {
+  .social-grid {
     grid-template-columns: 1fr;
   }
 
@@ -738,5 +545,127 @@ main {
 
   .site-footer {
     flex-direction: column;
+  }
+}
+
+/* ── 單頁改版新增（2026-08-15） ────────────────────────────── */
+
+.nav-shop {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 6px;
+  padding: 8px 14px;
+  border: 1px solid #1e211f;
+  border-radius: 999px;
+  background: #1e211f;
+  color: #f7f3ec;
+  font-size: 0.86rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.about-frame p {
+  margin: 0 0 12px;
+}
+
+.about-frame p:last-child {
+  margin-bottom: 0;
+}
+
+/* 保養速查：桌機三欄對照，手機堆疊成「情境 → 可以 → 要小心」。 */
+.care-table {
+  margin-top: 24px;
+  border: 1px solid #ddd4c5;
+  border-radius: 8px;
+  background: #fffaf1;
+  overflow: hidden;
+}
+
+.care-row {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 16px;
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee6d8;
+  font-size: 0.94rem;
+  line-height: 1.75;
+  color: #57605a;
+}
+
+.care-row:last-child {
+  border-bottom: none;
+}
+
+.care-head {
+  background: #f4ede0;
+  color: #1e211f;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+}
+
+.care-topic {
+  color: #1e211f;
+  font-weight: 600;
+}
+
+.care-warn {
+  color: #6b4a52;
+}
+
+.trait-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.trait-card {
+  padding: 16px;
+  border: 1px solid #e6ded0;
+  border-radius: 8px;
+  background: #fdf8ef;
+}
+
+.trait-card h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.trait-card p {
+  margin: 0;
+  color: #57605a;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.gallery-item h3 {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.commerce-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.gallery-disclaimer {
+  margin-top: 18px;
+  font-size: 0.86rem;
+  color: #8a8479;
+}
+
+@media (max-width: 640px) {
+  .care-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .care-head {
+    display: none;
+  }
+
+  .care-topic {
+    font-size: 1rem;
   }
 }

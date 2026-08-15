@@ -1,71 +1,35 @@
-import { ArrowRight, ExternalLink, Menu, Sparkles, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { ExternalLink, Menu, Sparkles, X } from "lucide-react";
+import { useState } from "react";
 import {
-  collections,
-  commerceChannels,
-  curationNotes,
+  aboutParagraphs,
+  careRows,
+  commerceChannel,
   galleryDisclaimer,
   galleryIntro,
   galleryItems,
-  guideTopics,
-  handoffPrinciples,
-  navigation,
-  processSteps,
+  naturalTraits,
+  sections,
   site,
   socialLinks,
 } from "./siteContent";
 
-type PageKey = "/" | "/about" | "/collections" | "/gallery" | "/guides" | "/contact";
-const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
-
-const pageTitles: Record<PageKey, string> = {
-  "/": "品牌首頁",
-  "/about": "關於品牌",
-  "/collections": "商品分類",
-  "/gallery": "選物紀錄",
-  "/guides": "水晶知識",
-  "/contact": "聯絡與購買說明",
-};
-
-function normalizePath(pathname: string): PageKey {
-  const path = basePath && pathname.startsWith(basePath) ? pathname.slice(basePath.length) || "/" : pathname;
-
-  if (
-    path === "/about" ||
-    path === "/collections" ||
-    path === "/gallery" ||
-    path === "/guides" ||
-    path === "/contact"
-  ) {
-    return path;
-  }
-
-  return "/";
-}
-
+/**
+ * 單頁站。刻意不做路由：
+ * 頁數越少越不會有某一頁默默過期，而這個站的定位是「一張放在網路上的名片」，
+ * 不是需要持續經營的網站。導覽只做同頁錨點捲動。
+ */
 export function App() {
-  const [page, setPage] = useState<PageKey>(() => normalizePath(window.location.pathname));
   const [menuOpen, setMenuOpen] = useState(false);
-  const title = useMemo(() => pageTitles[page], [page]);
 
-  useEffect(() => {
-    const onPopState = () => setPage(normalizePath(window.location.pathname));
-    window.addEventListener("popstate", onPopState);
-    return () => window.removeEventListener("popstate", onPopState);
-  }, []);
-
-  function visit(path: string) {
-    const next = normalizePath(path);
-    window.history.pushState({}, "", `${basePath}${next}`);
-    setPage(next);
+  function goTo(id: string) {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
     setMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   return (
     <div className="site-shell">
       <header className="site-header">
-        <button className="brand-mark" type="button" onClick={() => visit("/")}>
+        <button className="brand-mark" type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <span className="brand-symbol">HYS</span>
           <span>
             <strong>{site.brandName}</strong>
@@ -74,17 +38,15 @@ export function App() {
         </button>
 
         <nav className="desktop-nav" aria-label="主要導覽">
-          {navigation.map((item) => (
-            <button
-              className={item.path === page ? "nav-link active" : "nav-link"}
-              key={item.path}
-              type="button"
-              onClick={() => visit(item.path)}
-            >
-              <item.icon size={16} aria-hidden="true" />
+          {sections.map((item) => (
+            <button className="nav-link" key={item.id} type="button" onClick={() => goTo(item.id)}>
               {item.label}
             </button>
           ))}
+          <a className="nav-shop" href={site.commerceUrl}>
+            {site.commerceLabel}
+            <ExternalLink size={14} aria-hidden="true" />
+          </a>
         </nav>
 
         <button
@@ -99,168 +61,79 @@ export function App() {
 
       {menuOpen && (
         <nav className="mobile-nav" aria-label="手機導覽">
-          {navigation.map((item) => (
-            <button
-              className={item.path === page ? "nav-link active" : "nav-link"}
-              key={item.path}
-              type="button"
-              onClick={() => visit(item.path)}
-            >
-              <item.icon size={16} aria-hidden="true" />
+          {sections.map((item) => (
+            <button className="nav-link" key={item.id} type="button" onClick={() => goTo(item.id)}>
               {item.label}
             </button>
           ))}
+          <a className="nav-shop" href={site.commerceUrl}>
+            {site.commerceLabel}
+            <ExternalLink size={14} aria-hidden="true" />
+          </a>
         </nav>
       )}
 
       <main>
-        <p className="page-kicker">{title}</p>
-        {page === "/" && <HomePage visit={visit} />}
-        {page === "/about" && <AboutPage />}
-        {page === "/collections" && <CollectionsPage />}
-        {page === "/gallery" && <GalleryPage />}
-        {page === "/guides" && <GuidesPage />}
-        {page === "/contact" && <ContactPage />}
+        <Hero />
+        <About />
+        <Gallery />
+        <Care />
+        <Buy />
       </main>
 
       <footer className="site-footer">
-        <span>{site.brandName}</span>
-        <span>商品、結帳與訂單管理交由外部商店平台處理。</span>
+        <span>
+          {site.brandName}・{site.brandNameZh}
+        </span>
+        <span>商品、價格與訂單由官方賣場處理。</span>
       </footer>
     </div>
   );
 }
 
-function HomePage({ visit }: { visit: (path: string) => void }) {
+function Hero() {
+  const cover = galleryItems[1];
+
   return (
-    <>
-      <section className="hero-section">
-        <div className="hero-copy">
-          <h1>{site.brandName}</h1>
-          <p>從日常配戴到空間擺件，整理有照片細節、天然紋理說明與私訊購買路徑的水晶礦石選物。</p>
-          <div className="hero-actions">
-            <button className="primary-action" type="button" onClick={() => visit("/collections")}>
-              查看分類入口
-              <ArrowRight size={18} aria-hidden="true" />
-            </button>
-            <button className="secondary-action" type="button" onClick={() => visit("/contact")}>
-              購買通路
-              <ArrowRight size={16} aria-hidden="true" />
-            </button>
-          </div>
+    <section className="hero-section">
+      <div className="hero-copy">
+        <h1>{site.brandName}</h1>
+        <p>每一顆礦石長得都不一樣。挑到有眼緣的那顆，比挑到「最好的」那顆重要。</p>
+        <div className="hero-actions">
+          <a className="primary-action" href={site.commerceUrl}>
+            {site.commerceLabel}
+            <ExternalLink size={18} aria-hidden="true" />
+          </a>
+          <a className="secondary-action" href={site.instagramUrl}>
+            看 Instagram
+            <ExternalLink size={16} aria-hidden="true" />
+          </a>
         </div>
-        <div className="hero-panel" aria-label="精選礦石視覺">
-          <img src={collections[1].image} alt="紫色礦物與晶簇近拍" />
-          <ImageCredit credit={collections[1].imageCredit} variant="overlay" />
-          <div className="hero-panel-copy">
-            <span>Catalog routing</span>
-            <strong>官網建立信任，賣場承接交易。</strong>
-            <p>商品上架、分類、庫存與訂單交由外部平台維護，網站負責整理購買入口。</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="content-band">
-        <SectionHeading title="選品方式" text="參考個人礦石賣家常見的社群導購節奏：照片先建立信任，網站把規則說清楚。" />
-        <div className="feature-grid">
-          {curationNotes.map((note) => (
-            <Feature title={note} text="每件商品都以可確認的材質狀態、尺寸比例與購買流程來降低私訊來回成本。" key={note} />
-          ))}
-        </div>
-      </section>
-
-      <section className="content-band">
-        <SectionHeading title="購買流程" text="讓第一次進站的人知道官網只做導購，正式下單交給超商賣場平台。" />
-        <div className="process-grid">
-          {processSteps.map((step) => (
-            <article className="process-step" key={step.title}>
-              <step.icon size={22} aria-hidden="true" />
-              <h2>{step.title}</h2>
-              <p>{step.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="content-band">
-        <SectionHeading title="平台分工" text="商品生命週期交給後台，網站只保留穩定的品牌分類與購買入口。" />
-        <CommerceChannels />
-      </section>
-    </>
-  );
-}
-
-function AboutPage() {
-  return (
-    <section className="plain-section">
-      <SectionHeading title="關於品牌" text="Hug Your Soul 是以水晶、礦石與日常陪伴為主的選物空間。" />
-      <div className="about-layout">
-        <figure className="licensed-image">
-          <img src={collections[0].image} alt="水晶飾品與礦石選物" />
-          <ImageCredit credit={collections[0].imageCredit} />
-        </figure>
-        <div className="text-frame">
-          <p>網站會放穩定資訊：選品方式、分類入口、購買前確認與保養知識。現貨更新則以 Instagram 與 Threads 為主。</p>
-          <p>我們不把天然紋理包裝成完美無瑕，也不讓買家只靠一句寓意下單。每次購買前，都應該先看照片、尺寸、礦缺與使用情境。</p>
-        </div>
+      </div>
+      <div className="hero-panel" aria-label="礦石視覺">
+        <img src={cover.image} alt="紫色礦物與晶簇近拍" />
+        <ImageCredit credit={cover.imageCredit} variant="overlay" />
       </div>
     </section>
   );
 }
 
-function CollectionsPage() {
+function About() {
   return (
-    <section className="plain-section">
-      <SectionHeading title="商品分類" text="分類頁只做導覽。完整商品、價格、庫存、規格與結帳都以外部賣場為準。" />
-      <div className="collection-list">
-        {collections.map((collection) => (
-          <article className="collection-item" key={collection.name}>
-            <div>
-              <figure className="licensed-image">
-                <img src={collection.image} alt={`${collection.name}分類示意`} />
-                <ImageCredit credit={collection.imageCredit} />
-              </figure>
-              <h2>{collection.name}</h2>
-              <p>{collection.description}</p>
-              <div className="tag-row">
-                {collection.tags.map((tag) => (
-                  <span key={tag}>{tag}</span>
-                ))}
-              </div>
-            </div>
-            <div className="collection-actions">
-              {commerceChannels.map((channel) =>
-                channel.url ? (
-                  <a className="text-action" href={channel.url} key={channel.label}>
-                    {channel.label}
-                    <ExternalLink size={16} aria-hidden="true" />
-                  </a>
-                ) : (
-                  <span className="text-action pending-action" key={channel.label}>
-                    {channel.label}準備中
-                  </span>
-                ),
-              )}
-            </div>
-          </article>
-        ))}
-      </div>
-      <div className="handoff-strip">
-        {handoffPrinciples.map((item) => (
-          <article key={item.title}>
-            <item.icon size={20} aria-hidden="true" />
-            <h2>{item.title}</h2>
-            <p>{item.text}</p>
-          </article>
+    <section className="content-band" id="about">
+      <SectionHeading title="關於好格" text="眼緣第一，功效其次。" />
+      <div className="text-frame about-frame">
+        {aboutParagraphs.map((text) => (
+          <p key={text}>{text}</p>
         ))}
       </div>
     </section>
   );
 }
 
-function GalleryPage() {
+function Gallery() {
   return (
-    <section className="plain-section">
+    <section className="content-band" id="gallery">
       <SectionHeading title="選物紀錄" text={galleryIntro} />
 
       <div className="gallery-grid">
@@ -273,37 +146,54 @@ function GalleryPage() {
               <img src={item.image} alt={item.name} loading="lazy" />
               {item.status === "adopted" && <span className="gallery-badge">已找到主人</span>}
             </figure>
-            <h2>{item.name}</h2>
+            <h3>{item.name}</h3>
             <p>{item.note}</p>
             <ImageCredit credit={item.imageCredit} />
           </article>
         ))}
       </div>
 
-      <div className="text-frame gallery-note">
-        <p>
-          <Sparkles size={18} aria-hidden="true" /> 這頁只記錄看過的樣子。是否還有現貨、尺寸、價格與出貨方式，都以賣場和私訊回覆為準。
-        </p>
-        <p className="gallery-disclaimer">{galleryDisclaimer}</p>
-        <a className="text-action" href={site.commerceUrl}>
-          {site.commerceLabel}
-          <ExternalLink size={16} aria-hidden="true" />
-        </a>
-      </div>
+      <p className="gallery-disclaimer">{galleryDisclaimer}</p>
     </section>
   );
 }
 
-function GuidesPage() {
+function Care() {
   return (
-    <section className="plain-section">
-      <SectionHeading title="水晶知識" text="未來可逐篇擴充成 SEO 內容與購買前 FAQ。" />
-      <div className="topic-grid">
-        {guideTopics.map((topic) => (
-          <article className="topic-card" key={topic.title}>
-            <span>Guide</span>
-            <h2>{topic.title}</h2>
-            <p>{topic.text}</p>
+    <section className="content-band" id="care">
+      <SectionHeading
+        title="保養方式"
+        text="礦石本身的物理性質，寫一次就永遠適用。收藏這一段比記住任何一句寓意有用。"
+      />
+
+      <div className="care-table" role="table" aria-label="礦石保養速查">
+        <div className="care-row care-head" role="row">
+          <span role="columnheader">情境</span>
+          <span role="columnheader">可以</span>
+          <span role="columnheader">要小心</span>
+        </div>
+        {careRows.map((row) => (
+          <div className="care-row" role="row" key={row.topic}>
+            <span className="care-topic" role="cell">
+              {row.topic}
+            </span>
+            <span role="cell">{row.safe}</span>
+            <span className="care-warn" role="cell">
+              {row.careful}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <SectionHeading
+        title="這些不是瑕疵"
+        text="天然礦石本來就會有的樣子。買之前先知道，收到才不會覺得被騙。"
+      />
+      <div className="trait-grid">
+        {naturalTraits.map((trait) => (
+          <article className="trait-card" key={trait.name}>
+            <h3>{trait.name}</h3>
+            <p>{trait.text}</p>
           </article>
         ))}
       </div>
@@ -311,11 +201,26 @@ function GuidesPage() {
   );
 }
 
-function ContactPage() {
+function Buy() {
   return (
-    <section className="plain-section">
-      <SectionHeading title="聯絡與購買說明" text="正式下單、付款、物流與訂單通知交由外部賣場平台處理。" />
-      <CommerceChannels />
+    <section className="content-band" id="buy">
+      <SectionHeading title="購買與聯絡" text="下單、付款、物流與售後都在官方賣場。" />
+
+      <article className="commerce-card">
+        <div className="commerce-card-heading">
+          <commerceChannel.icon size={24} aria-hidden="true" />
+          <div>
+            <h3>{commerceChannel.label}</h3>
+            <span>{commerceChannel.role}</span>
+          </div>
+        </div>
+        <p>{commerceChannel.text}</p>
+        <a className="primary-action" href={commerceChannel.url}>
+          前往賣場
+          <ExternalLink size={16} aria-hidden="true" />
+        </a>
+      </article>
+
       <div className="social-grid">
         {socialLinks.map((link) => (
           <a className="social-card" href={link.url} key={link.label}>
@@ -326,43 +231,13 @@ function ContactPage() {
           </a>
         ))}
       </div>
+
       <div className="text-frame purchase-notes">
-        <p><Sparkles size={18} aria-hidden="true" /> 下單前建議確認自然光照片、尺寸、瑕疵近照、付款方式與出貨時間。</p>
-        <p>天然礦石可能有棉絮、冰裂、共生礦、色帶與小礦缺；官網提供購買前提醒，實際商品狀態以平台商品頁與賣家回覆為準。</p>
+        <p>
+          <Sparkles size={18} aria-hidden="true" /> 下單前建議先確認自然光照片、尺寸比例、瑕疵近照與出貨時間。
+        </p>
       </div>
     </section>
-  );
-}
-
-function CommerceChannels() {
-  return (
-    <div className="commerce-grid">
-      {commerceChannels.map((channel) => (
-        <article className="commerce-card" key={channel.label}>
-          <div className="commerce-card-heading">
-            <channel.icon size={24} aria-hidden="true" />
-            <div>
-              <h2>{channel.label}</h2>
-              <span>{channel.role}</span>
-            </div>
-          </div>
-          <p>{channel.text}</p>
-          <ul>
-            {channel.bullets.map((bullet) => (
-              <li key={bullet}>{bullet}</li>
-            ))}
-          </ul>
-          {channel.url ? (
-            <a className="primary-action" href={channel.url}>
-              前往{channel.label}
-              <ExternalLink size={16} aria-hidden="true" />
-            </a>
-          ) : (
-            <span className="channel-status">{channel.status}</span>
-          )}
-        </article>
-      ))}
-    </div>
   );
 }
 
@@ -385,14 +260,5 @@ function SectionHeading({ title, text }: { title: string; text: string }) {
       <h2>{title}</h2>
       <p>{text}</p>
     </div>
-  );
-}
-
-function Feature({ title, text }: { title: string; text: string }) {
-  return (
-    <article className="feature-card">
-      <h2>{title}</h2>
-      <p>{text}</p>
-    </article>
   );
 }

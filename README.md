@@ -1,36 +1,58 @@
 # Hug Your Soul Brand Site
 
-Static brand website framework for a crystal and mineral small business.
+好格（Hug Your Soul）的單頁品牌站。水晶、礦石與日常陪伴的選物空間。
 
-## Pages
+## 這個站是什麼、不是什麼
 
-- `/` - home
-- `/about` - brand story
-- `/collections` - collection entrances
-- `/guides` - crystal care and knowledge
-- `/contact` - buying and contact notes
+**是**一張放在網路上的名片，闆娘私訊時可以直接丟連結。
+**不是**商店，也不是需要持續經營的網站。
 
-## Development
+商品、價格、庫存、結帳與訂單全部在 [WACA 官方賣場](https://hug-your-soul.waca.ec/)。
+最新動態在 Instagram 與 Threads。這個站不重複維護第二份。
+
+## 設計約束
+
+決定於 2026-08-15，前提是**不購買自訂域名**。沒有域名代表 SEO 與「可以印在名片上的門面」
+這兩個理由都不成立，因此定位收斂成一頁式名片：
+
+1. **單頁。** 頁數越少，越不會有某一頁默默過期。導覽只做同頁錨點捲動，沒有路由。
+2. **只放寫一次就永遠正確的內容。** 保養方式、天然礦石特徵這類物理性質不會過時。
+   不放「最新」「本月」「新到貨」—— 那些交給 IG。
+3. **不放價格、庫存、購物車。** 一旦要跟賣場後台同步，維護成本就會落到非技術者身上。
+4. **選物紀錄不標日期。** 售出的不下架，改標「已找到主人」；沒有日期就永遠不會顯得舊。
+5. 目標是**就算三年不更新，看起來也不像倒店**。
+
+改動前請先確認不會破壞以上任何一條。
+
+## 頁面結構（單頁）
+
+| 區塊 | 錨點 | 內容 |
+| --- | --- | --- |
+| Hero | — | 品牌名、一句話、前往賣場 |
+| 關於好格 | `#about` | 品牌立場：眼緣第一、功效其次 |
+| 選物紀錄 | `#gallery` | 經手過的礦石相簿，無價格無日期 |
+| 保養方式 | `#care` | 碰水／日曬／碰撞／化學品／收納速查表 + 天然特徵說明 |
+| 購買與聯絡 | `#buy` | 官方賣場、Instagram、Threads |
+
+## 內容維護
+
+所有文案與資料都集中在 `src/siteContent.ts`，不需要動 `App.tsx`。
+
+- 換選物紀錄的照片：改 `galleryItems`，售出的把 `status` 改成 `"adopted"`
+- 圖片換成實拍後：移除 `imageCredit`，並刪掉 `galleryDisclaimer` 的引用
+- 調整保養速查：改 `careRows`
+- 換賣場或社群連結：改 `site`
+
+## 開發
 
 ```bash
 npm install
 npm run dev
-```
-
-## Build
-
-```bash
 npm run build
 ```
 
-The site is intentionally static. Product inventory, checkout, payments, and order management should live on the chosen commerce platform.
+## 圖片授權
 
-## Commerce Routing Model
-
-The site should not become a second product backend.
-
-- Update product listings, categories, prices, stock, specs, checkout, payments, and shipping in the external store platform.
-- Use FamilyMart FamiStore / 好賣+ as the primary product and order backend when available.
-- Use 7-ELEVEN MyShip / 賣貨便 as a backup or quick-checkout channel when useful.
-- Keep the website focused on brand story, stable collection entrances, buying notes, and links to external store pages.
-- When official store URLs are ready, set them in `src/siteContent.ts` under `commerceChannels`.
+目前選物紀錄使用 Wikimedia Commons 的授權礦物標本照當版面示意，站上有標示來源。
+**換成闆娘實拍照後，這批示意圖應全數移除。**
+不要使用來源不明或可能屬於他人的產品圖。

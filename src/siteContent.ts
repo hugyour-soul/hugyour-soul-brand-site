@@ -1,21 +1,23 @@
-import {
-  BookOpen,
-  Camera,
-  Gem,
-  HeartHandshake,
-  Home,
-  Instagram,
-  Mail,
-  MessageCircle,
-  ShieldCheck,
-  Sparkle,
-  Store,
-  Tags,
-  Truck,
-} from "lucide-react";
+import { Instagram, MessageCircle, Store } from "lucide-react";
+
+/**
+ * 設計約束（2026-08-15 定案，羽燕鋒拍板）
+ *
+ * 背景：品牌已改用 WACA 開店平台（hug-your-soul.waca.ec）承接商品、庫存與結帳，
+ * 且決定不購買自訂域名。沒有域名代表 SEO 與「可以貼在名片上的門面」這兩個
+ * 理由都不成立，這個站唯一的流量來源是闆娘私訊時手動把連結丟給人。
+ *
+ * 因此定位改為「一張放在網路上的名片」，而不是要持續經營的網站：
+ *   1. 單頁。頁數越少，越不會有某一頁默默爛掉。
+ *   2. 只放寫一次就永遠正確的內容（保養方式、天然特徵），
+ *      不放「最新」「本月」「新到貨」這類會過期的字眼 —— 那些交給 IG。
+ *   3. 商品的價格、庫存、規格只在 WACA 寫一次，官網不複製第二份。
+ *   4. 目標是就算三年不更新，看起來也不像倒店。
+ */
 
 export const site = {
   brandName: "Hug Your Soul",
+  brandNameZh: "好格",
   tagline: "水晶、礦石與日常陪伴的選物空間",
   commerceLabel: "查看現貨賣場",
   commerceUrl: "https://hug-your-soul.waca.ec/",
@@ -23,23 +25,27 @@ export const site = {
   threadsUrl: "https://www.threads.com/@hug_your.soul",
 };
 
-export const navigation = [
-  { label: "首頁", path: "/", icon: Home },
-  { label: "關於品牌", path: "/about", icon: HeartHandshake },
-  { label: "商品分類", path: "/collections", icon: Gem },
-  { label: "選物紀錄", path: "/gallery", icon: Sparkle },
-  { label: "水晶知識", path: "/guides", icon: BookOpen },
-  { label: "聯絡購買", path: "/contact", icon: Mail },
+// 單頁錨點。不做路由，捲動即可看完整站。
+export const sections = [
+  { id: "about", label: "關於好格" },
+  { id: "gallery", label: "選物紀錄" },
+  { id: "care", label: "保養方式" },
+  { id: "buy", label: "購買與聯絡" },
+];
+
+export const aboutParagraphs = [
+  "好格是以水晶、礦石與日常陪伴為主的選物空間。挑東西的時候，眼緣通常比功效重要。",
+  "天然礦石不是壓克力。棉絮、冰裂、色帶、共生礦與小礦缺都是它本來的樣子，我們不會把它修飾成完美無瑕，也不希望任何人只憑一句寓意就下單。",
 ];
 
 // 選物紀錄：刻意「不是商品目錄」。
-// 沒有價格、沒有庫存、沒有購物車；賣掉的不下架，改標「已找到主人」。
-// 這樣網站不需要跟著賣場後台同步，維護成本才不會落到非技術者身上。
+// 沒有價格、沒有庫存、沒有日期；賣掉的不下架，改標「已找到主人」。
+// 沒有日期，這頁就永遠不會顯得舊；不同步庫存，就不需要有人回來維護。
 export const galleryIntro =
   "這裡放經手過的礦石長什麼樣子，不放價格和庫存。已經找到主人的也留著，那也是選物的一部分。";
 
 export const galleryDisclaimer =
-  "目前為版面示意，圖片取自 Wikimedia Commons 授權礦物標本照；正式上線會全數換成實拍。";
+  "目前為版面示意，圖片取自 Wikimedia Commons 授權礦物標本照；換上實拍照後即為正式內容。";
 
 export const galleryItems = [
   {
@@ -104,93 +110,52 @@ export const galleryItems = [
   },
 ];
 
-export const collections = [
+// 保養速查：這個站唯一會被重複用到的東西 —— 闆娘私訊時可以直接丟連結。
+// 只寫礦物本身的物理性質，寫一次就永遠正確，不需要跟著商品更新。
+export const careRows = [
   {
-    name: "日常配戴",
-    description: "手鍊、墜飾與能每天陪在身邊的小型礦石。官網負責整理風格，實際款式、手圍、價格與庫存以賣場後台為準。",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/b/b5/Quartz-137772.jpg",
-    imageCredit: {
-      label: "Quartz specimen photo by Robert M. Lavinsky, CC BY-SA 3.0",
-      url: "https://commons.wikimedia.org/wiki/File:Quartz-137772.jpg",
-    },
-    tags: ["手鍊", "墜飾", "隨身小礦"],
+    topic: "碰水",
+    safe: "石英家族（白水晶、紫水晶、粉晶、黃水晶、茶晶）短暫沖洗沒問題，擦乾就好。",
+    careful: "孔雀石、青金石、方解石、螢石、天使石避免泡水 —— 硬度低或結構較鬆，長時間浸泡容易失去光澤。用乾布或微濕布擦拭即可。",
   },
   {
-    name: "空間擺件",
-    description: "晶簇、原礦與桌面陳列物。尺寸、重量、底部狀態與主要觀看面由商品賣場頁承接，避免官網與後台雙重維護。",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/4/4e/Amethyst-sample2.jpg",
-    imageCredit: {
-      label: "Amethyst photo by Jennifer M, CC BY 2.0",
-      url: "https://commons.wikimedia.org/wiki/File:Amethyst-sample2.jpg",
-    },
-    tags: ["晶簇", "原礦", "桌面陳列"],
+    topic: "日曬",
+    safe: "白水晶、黑曜石、瑪瑙相對耐光。",
+    careful: "紫水晶、粉晶、黃水晶、螢石、海藍寶長期直曬會褪色。別放在整天照得到太陽的窗邊。",
   },
   {
-    name: "禮物選品",
-    description: "依預算、場合與對方喜好整理入口；是否有現貨、是否可預購、包裝與出貨時間仍交由外部賣場確認。",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/e/e7/Quartz-rhqtz-46d.jpg",
-    imageCredit: {
-      label: "Clear quartz cluster photo by Robert M. Lavinsky, CC BY-SA 3.0",
-      url: "https://commons.wikimedia.org/wiki/File:Quartz-rhqtz-46d.jpg",
-    },
-    tags: ["生日", "入厝", "自我照顧"],
+    topic: "碰撞",
+    safe: "石英類硬度約 7，日常配戴沒什麼問題。",
+    careful: "螢石約 4、方解石約 3，指甲以外的東西都可能刮傷，尖角也容易磕掉。單獨收、不要跟其他礦石擠在一起。",
+  },
+  {
+    topic: "化學品",
+    safe: "清水與軟布是最安全的組合。",
+    careful: "香水、乳液、防曬、清潔劑都先擦好再戴。已經有冰裂的礦石不要用超音波清洗機，震動會讓裂痕延伸。",
+  },
+  {
+    topic: "收納",
+    safe: "軟布袋或有隔層的盒子。",
+    careful: "不同硬度的礦石放在一起會互相刮傷，硬的那顆通常沒事，軟的那顆會留痕。",
   },
 ];
 
-// 目前實際營運的通路只有 WACA 官方賣場。
-// 好賣+ / 賣貨便曾列為候選但未啟用，先移除避免站上出現點不進去的死連結；
-// 之後要開再照同樣結構加回來即可。
-export const commerceChannels = [
-  {
-    label: "Hug Your Soul 官方賣場",
-    role: "商品與訂單後台",
-    url: site.commerceUrl,
-    status: "已上線",
-    icon: Store,
-    text: "WACA 開店平台。商品上架、分類、價格、庫存、結帳與訂單都在這裡，官網只負責把人帶過來。",
-    bullets: ["商品分類與現貨狀態", "線上結帳與物流", "訂單與售後溝通"],
-  },
+// 天然特徵不是瑕疵 —— 這段同時是購買前的期待值管理。
+export const naturalTraits = [
+  { name: "棉絮", text: "內部像雲霧或絲狀的細微包裹體，是生長過程留下的痕跡。" },
+  { name: "冰裂", text: "內部的天然裂痕，會在光線下折射出彩光。不影響配戴，但避免劇烈溫差與撞擊。" },
+  { name: "色帶", text: "顏色深淺分布不均。天然致色本來就不會整顆一模一樣。" },
+  { name: "共生礦", text: "兩種以上的礦物長在同一塊上，常見於原礦與晶簇。" },
+  { name: "礦缺", text: "邊角的天然缺口或未完全生長的面，原礦幾乎都會有。" },
 ];
 
-export const handoffPrinciples = [
-  {
-    title: "平台是營運真相",
-    text: "商品上架、分類、庫存、價格、規格、訂單與物流都以官方賣場後台為準。",
-    icon: ShieldCheck,
-  },
-  {
-    title: "官網只做導購",
-    text: "官網保留品牌分類、選物故事、購買前提醒與外部賣場入口，不複製完整商品資料。",
-    icon: Tags,
-  },
-  {
-    title: "非技術者可維護",
-    text: "未來主要處理者只需要管理外部平台；網站只在新增分類、調整品牌內容或替換賣場連結時更新。",
-    icon: Truck,
-  },
-];
-
-export const guideTopics = [
-  {
-    title: "如何挑選第一顆水晶",
-    text: "先看喜歡的色感與使用情境，再看尺寸、重量、預算與保養難度。",
-  },
-  {
-    title: "天然紋理、冰裂與礦缺",
-    text: "天然礦石不是壓克力，紋理、棉絮、共生礦與小礦缺都需要購買前說清楚。",
-  },
-  {
-    title: "日常配戴保養",
-    text: "避開長時間潮濕、香水與劇烈碰撞；不同礦物硬度不同，不能全用同一套保養法。",
-  },
-  {
-    title: "私訊購買前確認",
-    text: "購買前建議確認自然光照片、尺寸比例、瑕疵近照、付款方式與出貨時間。",
-  },
-];
+export const commerceChannel = {
+  label: "Hug Your Soul 官方賣場",
+  role: "商品與訂單後台",
+  url: site.commerceUrl,
+  icon: Store,
+  text: "商品、價格、庫存、結帳與訂單都在賣場。這個網站不重複維護第二份，以免兩邊對不起來。",
+};
 
 export const socialLinks = [
   {
@@ -204,29 +169,5 @@ export const socialLinks = [
     url: site.threadsUrl,
     icon: MessageCircle,
     text: "看日常更新、補貨消息與選物想法。",
-  },
-];
-
-export const curationNotes = [
-  "自然光與近拍細節比濾鏡重要",
-  "標示尺寸、重量、瑕疵與礦物特性",
-  "以私訊確認現貨狀態與出貨方式",
-];
-
-export const processSteps = [
-  {
-    title: "看分類",
-    text: "先從官網確認風格、用途與購買前注意事項。",
-    icon: Camera,
-  },
-  {
-    title: "進賣場",
-    text: "點進官方賣場，由平台顯示現貨、規格、價格與庫存。",
-    icon: Store,
-  },
-  {
-    title: "平台結帳",
-    text: "付款、物流、訂單通知與售後溝通都交給外部平台承接。",
-    icon: Mail,
   },
 ];
