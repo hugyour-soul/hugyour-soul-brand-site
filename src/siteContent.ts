@@ -19,7 +19,7 @@ export const site = {
   brandName: "Hug Your Soul",
   tagline: "水晶、礦石與日常陪伴的選物空間",
   commerceLabel: "查看現貨賣場",
-  commerceUrl: "https://www.instagram.com/hug_your.soul/",
+  commerceUrl: "https://hug-your-soul.waca.ec/",
   instagramUrl: "https://www.instagram.com/hug_your.soul/",
   threadsUrl: "https://www.threads.com/@hug_your.soul",
 };
@@ -143,8 +143,17 @@ export const collections = [
 
 export const commerceChannels = [
   {
-    label: "全家好賣+",
+    label: "Hug Your Soul 官方賣場",
     role: "主要商品後台",
+    url: site.commerceUrl,
+    status: "已上線",
+    icon: Store,
+    text: "WACA 開店平台。商品上架、分類、價格、庫存、結帳與訂單都在這裡，官網只負責把人帶過來。",
+    bullets: ["商品分類與現貨狀態", "線上結帳與物流", "訂單與售後溝通"],
+  },
+  {
+    label: "全家好賣+",
+    role: "備用通路（未啟用）",
     url: "",
     status: "賣場連結待設定",
     icon: Store,
@@ -165,7 +174,7 @@ export const commerceChannels = [
 export const handoffPrinciples = [
   {
     title: "平台是營運真相",
-    text: "商品上架、分類、庫存、價格、規格、訂單與物流都以好賣+ / 賣貨便後台為準。",
+    text: "商品上架、分類、庫存、價格、規格、訂單與物流都以官方賣場後台為準。",
     icon: ShieldCheck,
   },
   {
@@ -228,7 +237,7 @@ export const processSteps = [
   },
   {
     title: "進賣場",
-    text: "點進好賣+ 或賣貨便，由平台顯示現貨、規格、價格與庫存。",
+    text: "點進官方賣場，由平台顯示現貨、規格、價格與庫存。",
     icon: Store,
   },
   {
