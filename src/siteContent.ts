@@ -3,7 +3,7 @@ import { Instagram, MessageCircle, Store } from "lucide-react";
 /**
  * 設計約束（2026-08-15 定案，羽燕鋒拍板）
  *
- * 背景：品牌已改用 WACA 開店平台（hug-your-soul.waca.ec）承接商品、庫存與結帳，
+ * 背景：品牌已改用 WACA 開店平台（hug-your-soul.waca.tw）承接商品、庫存與結帳，
  * 且決定不購買自訂域名。沒有域名代表 SEO 與「可以貼在名片上的門面」這兩個
  * 理由都不成立，這個站唯一的流量來源是闆娘私訊時手動把連結丟給人。
  *
@@ -20,7 +20,7 @@ export const site = {
   brandNameZh: "好格",
   tagline: "水晶、礦石與日常陪伴的選物空間",
   commerceLabel: "查看現貨賣場",
-  commerceUrl: "https://hug-your-soul.waca.ec/",
+  commerceUrl: "https://hug-your-soul.waca.tw/",
   instagramUrl: "https://www.instagram.com/hug_your.soul/",
   threadsUrl: "https://www.threads.com/@hug_your.soul",
 };
