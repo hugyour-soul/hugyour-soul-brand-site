@@ -19,7 +19,7 @@ export const site = {
   brandName: "Hug Your Soul",
   brandNameZh: "好格",
   tagline: "水晶、礦石與日常陪伴的選物空間",
-  commerceLabel: "查看現貨賣場",
+  commerceLabel: "WACA 賣場",
   commerceUrl: "https://hug-your-soul.waca.tw/",
   // 目前指向好賣+ 平台首頁。個人賣場是 famistore.famiport.com.tw/users/<賣家ID>，
   // 拿到那串 ID 之後把這一行換掉即可，首屏與購買區兩處會一起更新。
