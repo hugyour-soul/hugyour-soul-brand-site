@@ -113,15 +113,11 @@ function Hero() {
       <div className="hero-copy">
         <h1>{site.brandName}</h1>
         <p>每一顆礦石長得都不一樣。挑到有眼緣的那顆，比挑到「最好的」那顆重要。</p>
-        {/* 主按鈕改掛好賣+，WACA 退到次要位置。標籤跟著連結一起換，
-            否則按鈕上的字會指向另一個平台。 */}
         <div className="hero-actions">
-          {site.famistoreUrl && (
-            <a className="primary-action" href={site.famistoreUrl}>
-              {site.famistoreLabel}
-              <ExternalLink size={18} aria-hidden="true" />
-            </a>
-          )}
+          <a className="primary-action" href={site.famistoreUrl || site.commerceUrl}>
+            {site.heroCtaLabel}
+            <ExternalLink size={18} aria-hidden="true" />
+          </a>
           <a className="secondary-action" href={site.commerceUrl}>
             {site.commerceLabel}
             <ExternalLink size={16} aria-hidden="true" />

@@ -19,8 +19,11 @@ export const site = {
   brandName: "Hug Your Soul",
   brandNameZh: "好格",
   tagline: "水晶、礦石與日常陪伴的選物空間",
+  // 主要賣場是全家好賣+，WACA 為次要通路。兩處按鈕的主次順序都照這個走。
   commerceLabel: "WACA 賣場",
   commerceUrl: "https://hug-your-soul.waca.tw/",
+  // 首屏主按鈕：沿用原本的號召語，但連到主要賣場
+  heroCtaLabel: "查看現貨賣場",
   // 目前指向好賣+ 平台首頁。個人賣場是 famistore.famiport.com.tw/users/<賣家ID>，
   // 拿到那串 ID 之後把這一行換掉即可，首屏與購買區兩處會一起更新。
   famistoreLabel: "全家好賣+",
@@ -163,10 +166,10 @@ export const commerceChannel = {
   role: "商品與訂單後台",
   icon: Store,
   text: "商品、價格、庫存、結帳與訂單都在賣場，這個網站不重複維護第二份。"
-      + "兩個平台的商品不一定完全相同，習慣超商取貨付款的話走全家。",
+      + "現貨主要放在全家好賣+，WACA 賣場同樣可以下單。",
   links: [
-    { label: "WACA 賣場", url: site.commerceUrl, primary: true },
-    { label: "全家賣場", url: site.famistoreUrl, primary: false },
+    { label: "全家好賣+", url: site.famistoreUrl, primary: true },
+    { label: "WACA 賣場", url: site.commerceUrl, primary: false },
   ].filter((link) => link.url),   // 沒設網址的平台不顯示，寧可少一個入口也不要點不進去
 };
 
