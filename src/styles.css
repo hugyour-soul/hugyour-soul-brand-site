@@ -134,6 +134,25 @@ button {
   display: none;
 }
 
+/* 點面板以外的地方關閉選單。z-index 低於 header，
+   所以 header 本身與掛在它下緣的面板都仍然可以點。 */
+.nav-scrim {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: rgba(30, 33, 31, 0.32);
+}
+
+/* 錨點捲動後，標題不要被吸頂的 header 蓋住 */
+.content-band,
+.hero-section {
+  scroll-margin-top: 92px;
+}
+
 main {
   width: min(1120px, calc(100% - 36px));
   margin: 0 auto;
@@ -502,17 +521,30 @@ main {
     display: grid;
   }
 
+  /* 絕對定位掛在 header 下緣：header 是 sticky，面板因此跟著留在畫面上，
+     而且蓋在內容之上，不會像放在文件流裡那樣被下方區塊推走或遮住。 */
   .mobile-nav {
     display: grid;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 2;
     grid-template-columns: 1fr;
     gap: 6px;
     padding: 10px 18px 16px;
     border-bottom: 1px solid #e4ded2;
     background: #f8f6f1;
+    box-shadow: 0 16px 28px -18px rgba(30, 33, 31, 0.45);
   }
 
   .mobile-nav .nav-link {
     justify-content: flex-start;
+    min-height: 46px;
+  }
+
+  .nav-scrim {
+    display: block;
   }
   .hero-section,
   .social-grid {
@@ -549,21 +581,6 @@ main {
 }
 
 /* ── 單頁改版新增（2026-08-15） ────────────────────────────── */
-
-.nav-shop {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-left: 6px;
-  padding: 8px 14px;
-  border: 1px solid #1e211f;
-  border-radius: 999px;
-  background: #1e211f;
-  color: #f7f3ec;
-  font-size: 0.86rem;
-  text-decoration: none;
-  white-space: nowrap;
-}
 
 .about-frame p {
   margin: 0 0 12px;

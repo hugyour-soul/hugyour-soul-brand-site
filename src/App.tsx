@@ -1,5 +1,5 @@
 import { ExternalLink, Menu, Sparkles, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   aboutParagraphs,
   careRows,
@@ -20,6 +20,18 @@ import {
  */
 export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // 選單開著時鎖住背景捲動，並讓 Esc 可以關閉
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
 
   function goTo(id: string) {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -43,39 +55,41 @@ export function App() {
               {item.label}
             </button>
           ))}
-          <a className="nav-shop" href={site.commerceUrl}>
-            {site.commerceLabel}
-            <ExternalLink size={14} aria-hidden="true" />
-          </a>
         </nav>
 
         <button
           className="icon-button mobile-menu-button"
           type="button"
           aria-label={menuOpen ? "關閉導覽" : "開啟導覽"}
+          aria-expanded={menuOpen}
           onClick={() => setMenuOpen((open) => !open)}
         >
           {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
+
+        {menuOpen && (
+          /* 面板放在 header 內並絕對定位，才會跟著吸頂的 header 一起留在畫面上；
+             原本它是 header 的兄弟節點、走一般文件流，捲動時會被下方區塊蓋掉。 */
+          <nav className="mobile-nav" aria-label="手機導覽">
+            {sections.map((item) => (
+              <button className="nav-link" key={item.id} type="button" onClick={() => goTo(item.id)}>
+                {item.label}
+              </button>
+            ))}
+          </nav>
+        )}
       </header>
 
+      {/* 遮罩必須放在 header 外面：header 有 backdrop-filter，會成為 fixed 子元素的
+          基準框，放在裡面的話遮罩會縮成 header 那麼大而蓋不住整頁。 */}
       {menuOpen && (
-        <nav className="mobile-nav" aria-label="手機導覽">
-          {sections.map((item) => (
-            <button className="nav-link" key={item.id} type="button" onClick={() => goTo(item.id)}>
-              {item.label}
-            </button>
-          ))}
-          <a className="nav-shop" href={site.commerceUrl}>
-            {site.commerceLabel}
-            <ExternalLink size={14} aria-hidden="true" />
-          </a>
-        </nav>
+        <button className="nav-scrim" type="button" aria-label="關閉導覽" onClick={() => setMenuOpen(false)} />
       )}
 
       <main>
         <Hero />
         <About />
+        <Traits />
         <Gallery />
         <Care />
         <Buy />
@@ -134,7 +148,7 @@ function About() {
 function Gallery() {
   return (
     <section className="content-band" id="gallery">
-      <SectionHeading title="選物紀錄" text={galleryIntro} />
+      <SectionHeading title="商品照" text={galleryIntro} />
 
       <div className="gallery-grid">
         {galleryItems.map((item, index) => (
@@ -185,6 +199,13 @@ function Care() {
         ))}
       </div>
 
+    </section>
+  );
+}
+
+function Traits() {
+  return (
+    <section className="content-band" id="traits">
       <SectionHeading
         title="這些不是瑕疵"
         text="天然礦石本來就會有的樣子。買之前先知道，收到才不會覺得被騙。"
