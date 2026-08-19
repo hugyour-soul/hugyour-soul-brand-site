@@ -352,6 +352,13 @@ main {
   align-items: flex-start;
 }
 
+/* auto-fit：一個通路就撐滿整行，兩個以上自動並排，加通路不用再動 CSS */
+.commerce-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 16px;
+}
+
 .commerce-card-heading {
   display: flex;
   align-items: center;

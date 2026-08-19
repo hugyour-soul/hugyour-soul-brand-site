@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {
   aboutParagraphs,
   careRows,
-  commerceChannel,
+  commerceChannels,
   galleryDisclaimer,
   galleryIntro,
   galleryItems,
@@ -118,6 +118,12 @@ function Hero() {
             {site.commerceLabel}
             <ExternalLink size={18} aria-hidden="true" />
           </a>
+          {site.famistoreUrl && (
+            <a className="secondary-action" href={site.famistoreUrl}>
+              {site.famistoreLabel}
+              <ExternalLink size={16} aria-hidden="true" />
+            </a>
+          )}
           <a className="secondary-action" href={site.instagramUrl}>
             看 Instagram
             <ExternalLink size={16} aria-hidden="true" />
@@ -227,20 +233,24 @@ function Buy() {
     <section className="content-band" id="buy">
       <SectionHeading title="購買與聯絡" text="下單、付款、物流與售後都在官方賣場。" />
 
-      <article className="commerce-card">
-        <div className="commerce-card-heading">
-          <commerceChannel.icon size={24} aria-hidden="true" />
-          <div>
-            <h3>{commerceChannel.label}</h3>
-            <span>{commerceChannel.role}</span>
-          </div>
-        </div>
-        <p>{commerceChannel.text}</p>
-        <a className="primary-action" href={commerceChannel.url}>
-          前往賣場
-          <ExternalLink size={16} aria-hidden="true" />
-        </a>
-      </article>
+      <div className="commerce-grid">
+        {commerceChannels.map((channel) => (
+          <article className="commerce-card" key={channel.label}>
+            <div className="commerce-card-heading">
+              <channel.icon size={24} aria-hidden="true" />
+              <div>
+                <h3>{channel.label}</h3>
+                <span>{channel.role}</span>
+              </div>
+            </div>
+            <p>{channel.text}</p>
+            <a className="primary-action" href={channel.url}>
+              前往賣場
+              <ExternalLink size={16} aria-hidden="true" />
+            </a>
+          </article>
+        ))}
+      </div>
 
       <div className="social-grid">
         {socialLinks.map((link) => (

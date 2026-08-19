@@ -1,4 +1,4 @@
-import { Instagram, MessageCircle, Store } from "lucide-react";
+import { Instagram, MessageCircle, ShoppingBag, Store } from "lucide-react";
 
 /**
  * 設計約束（2026-08-15 定案，羽燕鋒拍板）
@@ -21,6 +21,10 @@ export const site = {
   tagline: "水晶、礦石與日常陪伴的選物空間",
   commerceLabel: "查看現貨賣場",
   commerceUrl: "https://hug-your-soul.waca.tw/",
+  // 全家好賣+ 的賣家賣場路徑是 famistore.famiport.com.tw/users/<賣家ID>，
+  // 沒有網址就不顯示按鈕 —— 2026-08-15 就是因為空連結才把這個通路整個拿掉的。
+  famistoreLabel: "全家好賣+",
+  famistoreUrl: "",
   instagramUrl: "https://www.instagram.com/hug_your.soul/",
   threadsUrl: "https://www.threads.com/@hug_your.soul",
 };
@@ -152,13 +156,22 @@ export const naturalTraits = [
   { name: "礦缺", text: "邊角的天然缺口或未完全生長的面，原礦幾乎都會有。" },
 ];
 
-export const commerceChannel = {
-  label: "Hug Your Soul 官方賣場",
-  role: "商品與訂單後台",
-  url: site.commerceUrl,
-  icon: Store,
-  text: "商品、價格、庫存、結帳與訂單都在賣場。這個網站不重複維護第二份，以免兩邊對不起來。",
-};
+export const commerceChannels = [
+  {
+    label: "Hug Your Soul 官方賣場",
+    role: "商品與訂單後台",
+    url: site.commerceUrl,
+    icon: Store,
+    text: "商品、價格、庫存、結帳與訂單都在賣場。這個網站不重複維護第二份，以免兩邊對不起來。",
+  },
+  {
+    label: site.famistoreLabel,
+    role: "超商取貨賣場",
+    url: site.famistoreUrl,
+    icon: ShoppingBag,
+    text: "習慣到全家取貨付款的話，可以走這邊下單。商品與庫存以各賣場實際頁面為準。",
+  },
+].filter((channel) => channel.url);   // 沒設網址的通路不顯示，寧可少一個入口也不要點不進去
 
 export const socialLinks = [
   {
