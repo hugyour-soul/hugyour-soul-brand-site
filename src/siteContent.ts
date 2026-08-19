@@ -21,10 +21,10 @@ export const site = {
   tagline: "水晶、礦石與日常陪伴的選物空間",
   commerceLabel: "查看現貨賣場",
   commerceUrl: "https://hug-your-soul.waca.tw/",
-  // 全家好賣+ 的賣家賣場路徑是 famistore.famiport.com.tw/users/<賣家ID>，
-  // 沒有網址就不顯示按鈕 —— 2026-08-15 就是因為空連結才把這個通路整個拿掉的。
+  // 目前指向好賣+ 平台首頁。個人賣場是 famistore.famiport.com.tw/users/<賣家ID>，
+  // 拿到那串 ID 之後把這一行換掉即可，首屏與購買區兩處會一起更新。
   famistoreLabel: "全家好賣+",
-  famistoreUrl: "",
+  famistoreUrl: "https://famistore.famiport.com.tw/",
   instagramUrl: "https://www.instagram.com/hug_your.soul/",
   threadsUrl: "https://www.threads.com/@hug_your.soul",
 };
