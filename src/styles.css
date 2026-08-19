@@ -350,13 +350,6 @@ main {
   align-items: flex-start;
 }
 
-/* auto-fit：一個通路就撐滿整行，兩個以上自動並排，加通路不用再動 CSS */
-.commerce-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-  gap: 16px;
-}
-
 .commerce-card-heading {
   display: flex;
   align-items: center;
@@ -382,12 +375,12 @@ main {
   color: #47453f;
   line-height: 1.55;
 }
-.commerce-card .primary-action {
-  margin-top: auto;      /* 兩張卡文字長度不同時，按鈕仍對齊在同一條底線上 */
-}
-
-.commerce-card p {
-  margin-bottom: 22px;
+/* 賣場平台用按鈕分流，窄螢幕自動換行 */
+.commerce-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .social-grid {

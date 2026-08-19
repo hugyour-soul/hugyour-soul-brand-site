@@ -1,4 +1,4 @@
-import { Instagram, MessageCircle, ShoppingBag, Store } from "lucide-react";
+import { Instagram, MessageCircle, Store } from "lucide-react";
 
 /**
  * 設計約束（2026-08-15 定案，羽燕鋒拍板）
@@ -156,22 +156,19 @@ export const naturalTraits = [
   { name: "礦缺", text: "邊角的天然缺口或未完全生長的面，原礦幾乎都會有。" },
 ];
 
-export const commerceChannels = [
-  {
-    label: "Hug Your Soul 官方賣場",
-    role: "商品與訂單後台",
-    url: site.commerceUrl,
-    icon: Store,
-    text: "商品、價格、庫存、結帳與訂單都在賣場。這個網站不重複維護第二份，以免兩邊對不起來。",
-  },
-  {
-    label: site.famistoreLabel,
-    role: "超商取貨賣場",
-    url: site.famistoreUrl,
-    icon: ShoppingBag,
-    text: "習慣到全家取貨付款的話，可以走這邊下單。商品與庫存以各賣場實際頁面為準。",
-  },
-].filter((channel) => channel.url);   // 沒設網址的通路不顯示，寧可少一個入口也不要點不進去
+// 賣場只有一張卡，多個平台用卡片裡的按鈕分流。
+// 拆成兩張卡的話，兩排格線長得一樣會被讀成同一個區塊，也讓人以為是兩件不同的事。
+export const commerceChannel = {
+  label: "Hug Your Soul 官方賣場",
+  role: "商品與訂單後台",
+  icon: Store,
+  text: "商品、價格、庫存、結帳與訂單都在賣場，這個網站不重複維護第二份。"
+      + "兩個平台的商品不一定完全相同，習慣超商取貨付款的話走全家。",
+  links: [
+    { label: "WACA 賣場", url: site.commerceUrl, primary: true },
+    { label: "全家賣場", url: site.famistoreUrl, primary: false },
+  ].filter((link) => link.url),   // 沒設網址的平台不顯示，寧可少一個入口也不要點不進去
+};
 
 export const socialLinks = [
   {
