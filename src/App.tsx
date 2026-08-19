@@ -207,8 +207,8 @@ function Traits() {
   return (
     <section className="content-band" id="traits">
       <SectionHeading
-        title="這些不是瑕疵"
-        text="天然礦石本來就會有的樣子。買之前先知道，收到才不會覺得被騙。"
+        title="關於水晶"
+        text="這些不是瑕疵 —— 天然礦石本來就會有的樣子。買之前先知道，收到才不會覺得被騙。"
       />
       <div className="trait-grid">
         {naturalTraits.map((trait) => (
