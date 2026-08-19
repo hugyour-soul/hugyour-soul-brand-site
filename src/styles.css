@@ -322,7 +322,6 @@ main {
   font-size: 1rem;
   line-height: 1.8;
 }
-.social-grid,
 .text-frame,
 .social-card,
 .commerce-card {
@@ -347,7 +346,6 @@ main {
 }
 .commerce-card {
   display: flex;
-  min-height: 320px;
   flex-direction: column;
   align-items: flex-start;
 }
@@ -385,17 +383,24 @@ main {
   line-height: 1.55;
 }
 .commerce-card .primary-action {
-  margin-top: 22px;
+  margin-top: auto;      /* 兩張卡文字長度不同時，按鈕仍對齊在同一條底線上 */
+}
+
+.commerce-card p {
+  margin-bottom: 22px;
 }
 
 .social-grid {
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .social-card {
   position: relative;
   display: grid;
-  min-height: 190px;
+  align-content: start;
+  gap: 10px;
   padding: 22px;
   color: inherit;
   text-decoration: none;
