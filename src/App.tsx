@@ -150,6 +150,20 @@ function About() {
 }
 
 function Gallery() {
+  const [opened, setOpened] = useState<(typeof galleryItems)[number] | null>(null);
+
+  // 跟行動選單同一套處理：開著時鎖住背景捲動，Esc 可以關閉
+  useEffect(() => {
+    if (!opened) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpened(null);
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [opened]);
+
   return (
     <section className="content-band" id="gallery">
       <SectionHeading title="商品照" text={galleryIntro} />
@@ -161,7 +175,14 @@ function Gallery() {
             key={`${item.name}-${index}`}
           >
             <figure className="gallery-photo">
-              <img src={item.image} alt={item.name} loading="lazy" />
+              <button
+                className="gallery-photo-button"
+                type="button"
+                onClick={() => setOpened(item)}
+                aria-label={`放大看 ${item.name}`}
+              >
+                <img src={item.image} alt={item.name} loading="lazy" />
+              </button>
               {item.status === "adopted" && <span className="gallery-badge">已找到主人</span>}
             </figure>
             <h3>{item.name}</h3>
@@ -172,6 +193,31 @@ function Gallery() {
       </div>
 
       <p className="gallery-disclaimer">{galleryDisclaimer}</p>
+
+      {opened && (
+        <div
+          className="lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={opened.name}
+          onClick={() => setOpened(null)}
+        >
+          <button className="lightbox-close" type="button" onClick={() => setOpened(null)} aria-label="關閉">
+            <X size={20} aria-hidden="true" />
+          </button>
+
+          {/* 擋掉冒泡：點背景關閉，點圖片本身不關 */}
+          <figure className="lightbox-frame" onClick={(e) => e.stopPropagation()}>
+            <img src={opened.image} alt={opened.name} />
+            <figcaption>
+              <h3>{opened.name}</h3>
+              <p>{opened.note}</p>
+              {opened.status === "adopted" && <span className="lightbox-badge">已找到主人</span>}
+              <ImageCredit credit={opened.imageCredit} />
+            </figcaption>
+          </figure>
+        </div>
+      )}
     </section>
   );
 }

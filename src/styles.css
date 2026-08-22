@@ -478,12 +478,6 @@ main {
   transition: filter 200ms ease;
 }
 
-.gallery-item h2 {
-  margin: 0;
-  font-size: 1.02rem;
-  letter-spacing: 0;
-}
-
 .gallery-item p {
   margin: 0;
   color: #57605a;
@@ -504,17 +498,109 @@ main {
   backdrop-filter: blur(4px);
 }
 
+/* 已找到主人：縮圖接近全灰，並且提亮而不是壓暗——
+   底色是米白，壓暗反而會變重、更搶眼，提亮才會往後退。 */
 .gallery-item.adopted .gallery-photo img {
-  filter: saturate(0.55) brightness(0.94);
+  filter: grayscale(0.9) brightness(1.03);
 }
 
-.gallery-item.adopted h2 {
-  color: #57605a;
+.gallery-item.adopted h3 {
+  color: #8a8479;
+}
+
+.gallery-item.adopted p {
+  color: #8a8479;
 }
 
 .gallery-disclaimer {
   font-size: 0.86rem;
   color: #8a8479;
+}
+
+/* 點開看大圖。縮圖可能是灰的，這裡一律還原成原本的顏色——
+   賣掉不代表要把它抹掉，那也是選物的一部分。 */
+.gallery-photo-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 5vw, 48px);
+  background: rgba(30, 33, 31, 0.78);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox-frame {
+  margin: 0;
+  display: grid;
+  gap: 14px;
+  max-width: min(880px, 100%);
+  max-height: 100%;
+  overflow: auto;
+  padding: 14px;
+  border-radius: 10px;
+  background: #fffaf1;
+  cursor: default;
+}
+
+.lightbox-frame img {
+  display: block;
+  width: 100%;
+  max-height: 68vh;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #f2ece1;
+  filter: none;
+}
+
+.lightbox-frame figcaption {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+
+.lightbox-frame figcaption h3 {
+  margin: 0;
+  font-size: 1.06rem;
+}
+
+.lightbox-frame figcaption p {
+  margin: 0;
+  color: #57605a;
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+.lightbox-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #efe7d9;
+  color: #57605a;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: clamp(12px, 3vw, 24px);
+  right: clamp(12px, 3vw, 24px);
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(247, 243, 236, 0.92);
+  color: #1e211f;
 }
 
 @media (max-width: 860px) {
