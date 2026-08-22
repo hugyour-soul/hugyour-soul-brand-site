@@ -498,10 +498,17 @@ main {
   backdrop-filter: blur(4px);
 }
 
-/* 已找到主人：縮圖接近全灰，並且提亮而不是壓暗——
-   底色是米白，壓暗反而會變重、更搶眼，提亮才會往後退。 */
+/* 已找到主人：用「淡」而不是「灰」。
+   礦石的顏色就是它的品名——紫水晶去彩度會被看成另一顆灰石頭，
+   透明的則根本沒有彩度可去，等於沒變化。已售出是「狀態」不是「屬性」，
+   所以壓不透明度讓它往米白底色裡退，色相保持原樣。 */
 .gallery-item.adopted .gallery-photo img {
-  filter: grayscale(0.9) brightness(1.03);
+  opacity: 0.55;
+}
+
+.gallery-item.adopted {
+  border-color: #e8e1d5;
+  background: #fbf7ef;
 }
 
 .gallery-item.adopted h3 {
@@ -559,7 +566,9 @@ main {
   object-fit: contain;
   border-radius: 6px;
   background: #f2ece1;
+  /* 縮圖可能是淡的，大圖一律還原 */
   filter: none;
+  opacity: 1;
 }
 
 .lightbox-frame figcaption {
