@@ -503,7 +503,7 @@ main {
    透明的則根本沒有彩度可去，等於沒變化。已售出是「狀態」不是「屬性」，
    所以壓不透明度讓它往米白底色裡退，色相保持原樣。 */
 .gallery-item.adopted .gallery-photo img {
-  opacity: 0.55;
+  opacity: 0.38;
 }
 
 .gallery-item.adopted {
