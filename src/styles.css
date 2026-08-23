@@ -483,7 +483,9 @@ main {
 
 .gallery-item p {
   margin: 0;
-  color: #57605a;
+  /* 在售品的說明文壓深，跟已售出的 #8a8479 拉開差距。
+     兩邊都停在灰階區間的話，「已售出」就只剩徽章在扛。 */
+  color: #3b423d;
   font-size: 0.94rem;
   line-height: 1.7;
 }
