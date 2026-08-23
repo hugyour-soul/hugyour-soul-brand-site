@@ -422,8 +422,11 @@ main {
   padding: 24px;
 }
 
+/* 這條提醒排在賣場卡與社群卡下面，那兩者都是滿版。
+   .text-frame 的 760px 是給「關於好格」那段散文的閱讀寬度，
+   套到這裡只會讓它在寬畫面比上面的卡片短一截，所以解掉上限。 */
 .purchase-notes {
-  max-width: 900px;
+  max-width: none;
 }
 
 .purchase-notes p:first-child {
