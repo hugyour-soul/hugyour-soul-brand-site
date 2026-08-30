@@ -18,6 +18,8 @@ import { Instagram, MessageCircle, Store } from "lucide-react";
 export const site = {
   brandName: "Hug Your Soul",
   brandNameZh: "好格",
+  // 沿用 GitHub organization 的公開頭像作為品牌商標圖樣。
+  logoUrl: "https://avatars.githubusercontent.com/u/308940175?v=4",
   tagline: "水晶、礦石與日常陪伴的選物空間",
   // 主要賣場是全家好賣+，WACA 為次要通路。兩處按鈕的主次順序都照這個走。
   commerceLabel: "WACA 賣場",

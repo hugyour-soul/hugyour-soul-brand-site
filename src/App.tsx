@@ -42,7 +42,7 @@ export function App() {
     <div className="site-shell">
       <header className="site-header">
         <button className="brand-mark" type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-          <span className="brand-symbol">HYS</span>
+          <img className="brand-logo" src={site.logoUrl} alt="好格 organization logo" />
           <span>
             <strong>{site.brandName}</strong>
             <small>{site.tagline}</small>

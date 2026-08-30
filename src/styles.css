@@ -60,18 +60,13 @@ button {
   text-align: left;
 }
 
-.brand-symbol {
+.brand-logo {
   width: 44px;
   height: 44px;
-  display: grid;
-  place-items: center;
+  display: block;
   border: 1px solid #2c4b45;
-  border-radius: 6px;
-  color: #fffaf1;
-  background: #214c43;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .brand-mark strong,
