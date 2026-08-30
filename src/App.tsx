@@ -106,8 +106,6 @@ export function App() {
 }
 
 function Hero() {
-  const cover = galleryItems[1];
-
   return (
     <section className="hero-section">
       <div className="hero-copy">
@@ -128,9 +126,8 @@ function Hero() {
           </a>
         </div>
       </div>
-      <div className="hero-panel" aria-label="礦石視覺">
-        <img src={cover.image} alt="紫色礦物與晶簇近拍" />
-        <ImageCredit credit={cover.imageCredit} variant="overlay" />
+      <div className="hero-panel hero-logo-panel" aria-label="好格商標">
+        <img src={site.logoUrl} alt="好格 organization logo" />
       </div>
     </section>
   );
