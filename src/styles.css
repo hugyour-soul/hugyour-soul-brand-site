@@ -53,6 +53,8 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 12px;
+  flex: 0 0 auto;
+  white-space: nowrap;
   border: 0;
   padding: 0;
   color: inherit;
@@ -64,6 +66,7 @@ button {
   width: 44px;
   height: 44px;
   display: block;
+  flex: 0 0 44px;
   border: 1px solid #2c4b45;
   border-radius: 50%;
   object-fit: cover;
@@ -160,7 +163,7 @@ main {
   grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
   align-items: stretch;
   gap: 28px;
-  min-height: 520px;
+  min-height: clamp(560px, 66vh, 820px);
 }
 
 .hero-copy {
@@ -686,7 +689,7 @@ main {
   }
 
   .hero-section {
-    min-height: auto;
+    min-height: 560px;
   }
 
   .hero-copy {
@@ -698,7 +701,7 @@ main {
   }
 
   .hero-panel {
-    min-height: 280px;
+    min-height: 560px;
   }
 
   .site-footer {
