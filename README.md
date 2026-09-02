@@ -65,7 +65,7 @@
 - FAQ：改 `faqRows`；只放不容易過期的購買前常見問題，平台細節仍以賣場規則為準
 - SEO：`index.html` 維護 title、description、canonical、社群分享描述與 Search Console 驗證標記
 - `public/sitemap.xml` 與 `public/robots.txt` 只描述這個單頁入口，不列商品與會過期的庫存
-- `public/favicon.svg` 是暫時版網站圖示；收到正式品牌圖後再替換
+- favicon 沿用品牌原本的公開 ICON；收到正式品牌圖後再替換 `index.html` 的 favicon URL
 
 ## 版面上踩過的坑
 
