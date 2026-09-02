@@ -22,7 +22,7 @@ export const site = {
   logoUrl: "https://avatars.githubusercontent.com/u/308940175?v=4",
   tagline: "水晶、礦石與日常陪伴的選物空間",
   // 主要賣場是全家好賣+，WACA 為次要通路。兩處按鈕的主次順序都照這個走。
-  commerceLabel: "WACA 高單價商品",
+  commerceLabel: "WACA 賣場",
   commerceUrl: "https://hug-your-soul.waca.tw/",
   // 首屏主按鈕：直接說明主要下單管道，避免顧客猜測會去哪裡。
   heroCtaLabel: "前往現貨賣場",
@@ -172,7 +172,7 @@ export const commerceChannel = {
       + "現貨與日常品項主要在全家好賣+，方便使用全家取貨；較高單價或特殊商品則放在 WACA。",
   links: [
     { label: "全家好賣+", url: site.famistoreUrl, primary: true },
-    { label: "WACA 高單價商品", url: site.commerceUrl, primary: false },
+    { label: "WACA 賣場", url: site.commerceUrl, primary: false },
   ].filter((link) => link.url),   // 沒設網址的平台不顯示，寧可少一個入口也不要點不進去
 };
 
