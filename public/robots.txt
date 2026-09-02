@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hugyour-soul.github.io/hugyour-soul-brand-site/sitemap.xml

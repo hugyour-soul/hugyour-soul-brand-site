@@ -12,7 +12,7 @@
 | 通路 | 角色 | 連結 |
 | --- | --- | --- |
 | 全家好賣+ | **主要賣場**，現貨與訂單以此為準 | `site.famistoreUrl` |
-| WACA 賣場 | 次要通路 | <https://hug-your-soul.waca.tw/> |
+| WACA 賣場 | 高單價／特殊商品通路 | <https://hug-your-soul.waca.tw/> |
 
 最新動態在 Instagram 與 Threads。
 
@@ -45,7 +45,8 @@
 | 關於水晶 | `#traits` | 副標「這些不是瑕疵」。棉絮、冰裂、色帶、共生礦、礦缺 |
 | 商品照 | `#gallery` | 經手過的礦石相簿，無價格無日期 |
 | 保養方式 | `#care` | 碰水／日曬／碰撞／化學品／收納速查表 |
-| 購買與聯絡 | `#buy` | 賣場卡（平台用卡內按鈕分流）、Instagram、Threads |
+| 常見問題 | `#faq` | 下單、取貨、天然特徵、退換貨與寓意說明 |
+| 購買與聯絡 | `#buy` | 賣場卡（全家好賣+主入口、WACA高單價商品）、Instagram、Threads |
 
 「關於水晶」刻意排在商品照前面：進來的人多半先想知道天然特徵，
 看照片前先做完期待值管理，收到貨才不會覺得被騙。
@@ -61,6 +62,10 @@
 - 換賣場或社群連結：改 `site`
 - 調整賣場卡的按鈕與主次順序：改 `commerceChannel.links`（`primary: true` 是實心按鈕）
 - 增減導覽項目：改 `sections`，`id` 要對得上 `App.tsx` 裡的 `<section id>`
+- FAQ：改 `faqRows`；只放不容易過期的購買前常見問題，平台細節仍以賣場規則為準
+- SEO：`index.html` 維護 title、description、canonical、社群分享描述與 Search Console 驗證標記
+- `public/sitemap.xml` 與 `public/robots.txt` 只描述這個單頁入口，不列商品與會過期的庫存
+- `public/favicon.svg` 是暫時版網站圖示；收到正式品牌圖後再替換
 
 ## 版面上踩過的坑
 

@@ -4,6 +4,7 @@ import {
   aboutParagraphs,
   careRows,
   commerceChannel,
+  faqRows,
   galleryDisclaimer,
   galleryIntro,
   galleryItems,
@@ -92,6 +93,7 @@ export function App() {
         <Traits />
         <Gallery />
         <Care />
+        <Faq />
         <Buy />
       </main>
 
@@ -263,6 +265,22 @@ function Traits() {
             <h3>{trait.name}</h3>
             <p>{trait.text}</p>
           </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Faq() {
+  return (
+    <section className="content-band" id="faq">
+      <SectionHeading title="常見問題" text="下單前先看這裡；平台最新規則仍以商品頁與訂單頁為準。" />
+      <div className="faq-list">
+        {faqRows.map((item) => (
+          <details className="faq-item" key={item.question}>
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
         ))}
       </div>
     </section>

@@ -461,6 +461,32 @@ main {
   font-weight: 700;
 }
 
+.faq-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.faq-item {
+  border: 1px solid #ddd4c5;
+  border-radius: 8px;
+  background: #fffaf1;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  padding: 16px 18px;
+  color: #1e211f;
+  font-weight: 700;
+}
+
+.faq-item p {
+  margin: 0;
+  padding: 0 18px 18px;
+  color: #58534c;
+  line-height: 1.75;
+}
+
 .site-footer {
   display: flex;
   justify-content: space-between;

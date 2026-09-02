@@ -22,10 +22,10 @@ export const site = {
   logoUrl: "https://avatars.githubusercontent.com/u/308940175?v=4",
   tagline: "水晶、礦石與日常陪伴的選物空間",
   // 主要賣場是全家好賣+，WACA 為次要通路。兩處按鈕的主次順序都照這個走。
-  commerceLabel: "WACA 賣場",
+  commerceLabel: "WACA 高單價商品",
   commerceUrl: "https://hug-your-soul.waca.tw/",
   // 首屏主按鈕：直接說明主要下單管道，避免顧客猜測會去哪裡。
-  heroCtaLabel: "前往全家好賣+",
+  heroCtaLabel: "前往現貨賣場",
   // 目前指向好賣+ 平台首頁。個人賣場是 famistore.famiport.com.tw/users/<賣家ID>，
   // 拿到那串 ID 之後把這一行換掉即可，首屏與購買區兩處會一起更新。
   famistoreLabel: "全家好賣+",
@@ -42,6 +42,7 @@ export const sections = [
   { id: "traits", label: "關於水晶" },
   { id: "gallery", label: "商品照" },
   { id: "care", label: "保養方式" },
+  { id: "faq", label: "常見問題" },
   { id: "buy", label: "購買與聯絡" },
 ];
 
@@ -168,10 +169,10 @@ export const commerceChannel = {
   role: "商品與訂單後台",
   icon: Store,
   text: "商品、價格與庫存以官方賣場為準。"
-      + "現貨與日常品項主要在全家好賣+，方便使用全家取貨；較高單價或特殊商品則放在 WACA 賣場。",
+      + "現貨與日常品項主要在全家好賣+，方便使用全家取貨；較高單價或特殊商品則放在 WACA。",
   links: [
     { label: "全家好賣+", url: site.famistoreUrl, primary: true },
-    { label: "WACA 賣場", url: site.commerceUrl, primary: false },
+    { label: "WACA 高單價商品", url: site.commerceUrl, primary: false },
   ].filter((link) => link.url),   // 沒設網址的平台不顯示，寧可少一個入口也不要點不進去
 };
 
@@ -187,5 +188,28 @@ export const socialLinks = [
     url: site.threadsUrl,
     icon: MessageCircle,
     text: "看日常更新、補貨消息與選物想法。",
+  },
+];
+
+export const faqRows = [
+  {
+    question: "商品要在哪裡下單？",
+    answer: "現貨與日常品項主要放在全家好賣+，可依賣場提供的方式付款與取貨；較高單價或特殊商品則放在 WACA。商品、價格與庫存以各官方賣場為準。",
+  },
+  {
+    question: "可以使用全家取貨嗎？",
+    answer: "全家好賣+ 的商品以平台當下提供的取貨方式為準。下單前請在商品頁確認取貨門市、運費與付款選項。",
+  },
+  {
+    question: "天然礦石有瑕疵嗎？",
+    answer: "棉絮、冰裂、色帶、共生礦與自然缺口都可能是天然礦石的一部分。購買前請確認商品照片、尺寸、重量與說明。",
+  },
+  {
+    question: "可以退換貨嗎？",
+    answer: "退換貨依實際下單平台的規則辦理；若收到商品有問題，請保留包裝並先透過下單平台或官方社群聯絡我們。",
+  },
+  {
+    question: "水晶有療效嗎？",
+    answer: "礦石寓意僅供文化與個人感受參考，不代表醫療、心理治療或任何效果保證。請依自己的喜好與感受選擇。",
   },
 ];
