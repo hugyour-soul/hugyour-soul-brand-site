@@ -194,7 +194,7 @@ export const socialLinks = [
 export const faqRows = [
   {
     question: "商品要在哪裡下單？",
-    answer: "現貨與日常品項主要放在全家好賣+，可依賣場提供的方式付款與取貨；較高單價或特殊商品則放在 WACA。商品、價格與庫存以各官方賣場為準，或者在IG或Threads上與我們聯絡喔！",
+    answer: "現貨與日常品項主要放在全家好賣+，可依賣場提供的方式付款與取貨；較高單價或特殊商品則放在 WACA。\n商品、價格與庫存以各官方賣場為準，或者在 IG、Threads 上與我們聯絡喔！",
   },
   {
     question: "可以使用全家取貨嗎？",
