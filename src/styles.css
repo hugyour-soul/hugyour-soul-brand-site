@@ -484,6 +484,7 @@ main {
   margin: 0;
   padding: 0 18px 18px;
   color: #58534c;
+  white-space: pre-line;
   line-height: 1.75;
 }
 
